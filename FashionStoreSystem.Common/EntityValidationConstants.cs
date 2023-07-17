@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FashionStoreSystem.Common
+﻿namespace FashionStoreSystem.Common
 {
-    internal class EntityValidationConstants
+    public class EntityValidationConstants
     {
+        public static class Category
+        {
+            public const int NameMinLenght = 2;
+            public const int NameMaxLength = 50;
+        }
+
+        public static class Product
+        {
+
+        }
     }
 }

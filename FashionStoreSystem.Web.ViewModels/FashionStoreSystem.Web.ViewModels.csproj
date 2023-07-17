@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FashionStoreSystem.Common\FashionStoreSystem.Common.csproj" />
+  </ItemGroup>
+
 </Project>
