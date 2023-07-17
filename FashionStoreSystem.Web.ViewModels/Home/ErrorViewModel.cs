@@ -1,4 +1,4 @@
-namespace FashionStoreSystem.Web.Models
+namespace FashionStoreSystem.Web.ViewModels.Home
 {
     public class ErrorViewModel
     {
