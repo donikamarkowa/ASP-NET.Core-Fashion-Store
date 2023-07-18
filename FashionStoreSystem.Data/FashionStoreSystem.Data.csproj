@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FashionStoreSystem.Common\FashionStoreSystem.Common.csproj" />
+    <ProjectReference Include="..\FashionStoreSystem.Data.Models\FashionStoreSystem.Data.Models.csproj" />
   </ItemGroup>
 
 </Project>

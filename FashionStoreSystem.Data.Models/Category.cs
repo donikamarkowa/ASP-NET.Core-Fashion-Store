@@ -5,11 +5,6 @@ namespace FashionStoreSystem.Data.Models
 {
     public class Category
     {
-        public Category()
-        {
-            this.Products = new HashSet<Product>();
-        }
-
         [Key]
         public int Id { get; set; }
 
@@ -17,6 +12,6 @@ namespace FashionStoreSystem.Data.Models
         [MaxLength(NameMaxLength)]
         public string Name { get; set; } = null!;
 
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<Product> Products { get; set; } = new List<Product>();   
     }
 }

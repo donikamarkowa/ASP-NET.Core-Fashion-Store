@@ -2,13 +2,13 @@
 
 namespace FashionStoreSystem.Data.Models
 {
-    public class Purchase
+    public class Favorite
     {
         [ForeignKey(nameof(User))]
         public Guid UserId { get; set; }
         public ApplicationUser User { get; set; } = null!;
 
-        [ForeignKey(nameof(Product))]   
+        [ForeignKey(nameof(Product))]
         public Guid ProductId { get; set; }
         public Product Product { get; set; } = null!;
     }
