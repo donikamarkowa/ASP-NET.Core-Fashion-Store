@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FashionStoreSystem.Web.ViewModels.Seller
+﻿namespace FashionStoreSystem.Web.ViewModels.Seller
 {
-    internal class BecomeSellerFormModel
+    public class BecomeSellerFormModel
     {
+        public string PhoneNumber { get; set; } = null!;
     }
 }
