@@ -64,7 +64,66 @@ namespace FashionStoreSystem.Web.Data
                 .HasForeignKey(p => p.UserId)
                 .OnDelete(DeleteBehavior.NoAction);
 
+            builder.Entity<Category>()
+                .HasData(new Category()
+                {
+                    Id = 1,
+                    Name = "Dresses"
+                },
+                new Category()
+                {
+                    Id = 2,
+                    Name = "T-shirts"
+                },
+                new Category()
+                {
+                    Id = 3,
+                    Name = "Trousers"
+                },
+                new Category()
+                {
+                    Id = 4,
+                    Name = "Jackets"
+                },
+                new Category()
+                {
+                    Id = 5,
+                    Name = "Jeans"
+                },
+                new Category()
+                {
+                    Id = 6,
+                    Name = "Accessories"
+                },
+                new Category()
+                {
+                    Id = 7,
+                    Name = "Shoes"
+                });
 
+            builder.Entity<Product>()
+                .HasData(new Product()
+                {
+                    Name = "Mini Dress",
+                    ImageUrl = "https://static.reserved.com/media/catalog/product/2/6/2690T-99X-001-1-687951_3.jpg",
+                    Description = "The dress has narrow straps slits on the sides with a composition of 65% viscose, 32% polyamide, 3% elastane.",
+                    Size = "XS",
+                    Price = 40,
+                    CategoryId = 1,
+                    SellerId = Guid.Parse("1BB98123-E199-4F38-8123-4A2E6B0F7814")
+                });
+
+            builder.Entity<Product>()
+                .HasData(new Product()
+                {
+                    Name = "T-shirt boxy",
+                    ImageUrl = "https://static.reserved.com/media/catalog/product/2/2/2272T-99X-001-1-633007_2.jpg",
+                    Description = "Kimono-style t-shirt in high-cotton jersey with a round neckline and short sleeves.",
+                    Size = "S",
+                    Price = 13,
+                    CategoryId = 2,
+                    SellerId = Guid.Parse("1BB98123-E199-4F38-8123-4A2E6B0F7814")
+                });
 
             base.OnModelCreating(builder);
         }
