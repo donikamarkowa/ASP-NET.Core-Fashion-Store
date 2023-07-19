@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FashionStoreSystem.Common\FashionStoreSystem.Common.csproj" />
+    <ProjectReference Include="..\FashionStoreSystem.Data.Models\FashionStoreSystem.Data.Models.csproj" />
+    <ProjectReference Include="..\FashionStoreSystem.Data\FashionStoreSystem.Data.csproj" />
+    <ProjectReference Include="..\FashionStoreSystem.Web.ViewModels\FashionStoreSystem.Web.ViewModels.csproj" />
+  </ItemGroup>
+
+</Project>

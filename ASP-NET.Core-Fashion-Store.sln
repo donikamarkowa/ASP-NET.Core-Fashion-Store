@@ -5,17 +5,23 @@ VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FashionStoreSystem.Web", "FashionStoreSystem.Web\FashionStoreSystem.Web.csproj", "{9C5F185F-01AF-449C-9138-6EC41DBC4EAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FashionStoreSystem.Common", "FashionStoreSystem.Common\FashionStoreSystem.Common.csproj", "{B0BBF217-19DA-4382-A63B-C74971FCBE62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FashionStoreSystem.Common", "FashionStoreSystem.Common\FashionStoreSystem.Common.csproj", "{B0BBF217-19DA-4382-A63B-C74971FCBE62}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{D3D6D440-1ED0-4679-9B48-E18F9C70C9D0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{7D7D38CA-3B92-43F2-9820-BCFD4A7805E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FashionStoreSystem.Data", "FashionStoreSystem.Data\FashionStoreSystem.Data.csproj", "{7820BFD9-25A1-4F8F-BFD4-C281177ECFB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FashionStoreSystem.Data", "FashionStoreSystem.Data\FashionStoreSystem.Data.csproj", "{7820BFD9-25A1-4F8F-BFD4-C281177ECFB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FashionStoreSystem.Data.Models", "FashionStoreSystem.Data.Models\FashionStoreSystem.Data.Models.csproj", "{134E13A2-0AE8-4BFA-B9E9-36A9B3C312DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FashionStoreSystem.Data.Models", "FashionStoreSystem.Data.Models\FashionStoreSystem.Data.Models.csproj", "{134E13A2-0AE8-4BFA-B9E9-36A9B3C312DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FashionStoreSystem.Web.ViewModels", "FashionStoreSystem.Web.ViewModels\FashionStoreSystem.Web.ViewModels.csproj", "{4530B78E-7C5C-4312-8FEF-C50F8628912E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FashionStoreSystem.Web.ViewModels", "FashionStoreSystem.Web.ViewModels\FashionStoreSystem.Web.ViewModels.csproj", "{4530B78E-7C5C-4312-8FEF-C50F8628912E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{5CA1FE82-C366-42B1-8779-FADACB43397C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FashionStoreSystem.Services.Data", "FashionStoreSystem.Services.Data\FashionStoreSystem.Services.Data.csproj", "{53EAEFBC-3338-4909-8F88-2A0E8ADD73BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FashionStoreSystem.Infrastructure", "FashionStoreSystem.Infrastructure\FashionStoreSystem.Infrastructure.csproj", "{6C51C2EA-001A-47AF-BE9E-BE26D45CB273}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +49,14 @@ Global
 		{4530B78E-7C5C-4312-8FEF-C50F8628912E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4530B78E-7C5C-4312-8FEF-C50F8628912E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4530B78E-7C5C-4312-8FEF-C50F8628912E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53EAEFBC-3338-4909-8F88-2A0E8ADD73BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53EAEFBC-3338-4909-8F88-2A0E8ADD73BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53EAEFBC-3338-4909-8F88-2A0E8ADD73BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53EAEFBC-3338-4909-8F88-2A0E8ADD73BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C51C2EA-001A-47AF-BE9E-BE26D45CB273}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C51C2EA-001A-47AF-BE9E-BE26D45CB273}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C51C2EA-001A-47AF-BE9E-BE26D45CB273}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C51C2EA-001A-47AF-BE9E-BE26D45CB273}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,6 +66,8 @@ Global
 		{7820BFD9-25A1-4F8F-BFD4-C281177ECFB9} = {7D7D38CA-3B92-43F2-9820-BCFD4A7805E9}
 		{134E13A2-0AE8-4BFA-B9E9-36A9B3C312DF} = {7D7D38CA-3B92-43F2-9820-BCFD4A7805E9}
 		{4530B78E-7C5C-4312-8FEF-C50F8628912E} = {D3D6D440-1ED0-4679-9B48-E18F9C70C9D0}
+		{53EAEFBC-3338-4909-8F88-2A0E8ADD73BF} = {5CA1FE82-C366-42B1-8779-FADACB43397C}
+		{6C51C2EA-001A-47AF-BE9E-BE26D45CB273} = {D3D6D440-1ED0-4679-9B48-E18F9C70C9D0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C223C359-C422-4E1E-99E1-E34E7BE8E8BF}

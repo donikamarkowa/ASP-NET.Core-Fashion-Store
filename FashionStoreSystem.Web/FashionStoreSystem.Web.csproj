@@ -19,6 +19,8 @@
     <ProjectReference Include="..\FashionStoreSystem.Common\FashionStoreSystem.Common.csproj" />
     <ProjectReference Include="..\FashionStoreSystem.Data.Models\FashionStoreSystem.Data.Models.csproj" />
     <ProjectReference Include="..\FashionStoreSystem.Data\FashionStoreSystem.Data.csproj" />
+    <ProjectReference Include="..\FashionStoreSystem.Infrastructure\FashionStoreSystem.Infrastructure.csproj" />
+    <ProjectReference Include="..\FashionStoreSystem.Services.Data\FashionStoreSystem.Services.Data.csproj" />
     <ProjectReference Include="..\FashionStoreSystem.Web.ViewModels\FashionStoreSystem.Web.ViewModels.csproj" />
   </ItemGroup>
 

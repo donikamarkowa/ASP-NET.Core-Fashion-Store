@@ -1,4 +1,5 @@
-﻿using FashionStoreSystem.Web.ViewModels.Home;
+﻿using FashionStoreSystem.Services.Data.Interfaces;
+using FashionStoreSystem.Web.ViewModels.Home;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -6,14 +7,18 @@ namespace FashionStoreSystem.Web.Controllers
 {
     public class HomeController : Controller
     {
-
-        public HomeController()
+        private readonly IProductService productService;
+        public HomeController(IProductService productService)
         {
+            this.productService = productService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            IEnumerable<IndexViewModel> viewModel = 
+                await this.productService.TopThreeCheapestProductsAsync();
+
+            return View(viewModel);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

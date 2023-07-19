@@ -1,7 +1,11 @@
 using FashionStoreSystem.Data.Models;
+using FashionStoreSystem.Services.Data;
+using FashionStoreSystem.Services.Data.Interfaces;
 using FashionStoreSystem.Web.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
+using FashionStoreSystem.Infrastructure.Extensions;
 
 namespace FashionStoreSystem.Web
 {
@@ -23,6 +27,8 @@ namespace FashionStoreSystem.Web
                 options.Password.RequireNonAlphanumeric = false;
             })
                 .AddEntityFrameworkStores<FashionStoreDbContext>();
+
+            builder.Services.AddApplicationServices(typeof(IProductService));
 
             builder.Services.AddControllersWithViews();
 
