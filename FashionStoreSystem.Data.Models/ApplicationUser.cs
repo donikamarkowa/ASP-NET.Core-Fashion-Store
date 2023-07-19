@@ -13,13 +13,6 @@ namespace FashionStoreSystem.Data.Models
         {
             this.Id = Guid.NewGuid();
         }
-
-        [StringLength(50)]
-        public string FirstName { get; set; } = null!;
-
-        [StringLength(50)]
-        public string LastName { get; set; } = null!;
-        public decimal Wallet { get; set; }
         public virtual ICollection<Purchase> Products { get; set; } = new List<Purchase>();
 
         public virtual ICollection<Favorite> FavoriteProducts { get; set; } = new List<Favorite>();
