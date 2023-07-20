@@ -1,6 +1,8 @@
-﻿using FashionStoreSystem.Services.Data.Interfaces;
+﻿using FashionStoreSystem.Data.Models;
+using FashionStoreSystem.Services.Data.Interfaces;
 using FashionStoreSystem.Web.Data;
 using FashionStoreSystem.Web.ViewModels.Home;
+using FashionStoreSystem.Web.ViewModels.Product;
 using Microsoft.EntityFrameworkCore;
 
 namespace FashionStoreSystem.Services.Data
@@ -12,6 +14,24 @@ namespace FashionStoreSystem.Services.Data
         {
             this.dbContext = dbContext;
         }
+
+        public async Task CreateAsync(ProductFormModel formModel, string sellerId)
+        {
+            Product newProduct = new Product()
+            {
+                Name = formModel.Name,
+                Description = formModel.Description,
+                Size = formModel.Size,
+                ImageUrl = formModel.ImageUrl,
+                Price = formModel.Price,
+                CategoryId = formModel.CategoryId,
+                SellerId = Guid.Parse(sellerId)
+            };
+
+            await this.dbContext.Products.AddAsync(newProduct);
+            await this.dbContext.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<IndexViewModel>> TopThreeCheapestProductsAsync()
         {
             IEnumerable<IndexViewModel> topThreeProducts = await this.dbContext

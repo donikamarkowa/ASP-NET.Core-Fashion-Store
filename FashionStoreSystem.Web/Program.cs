@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using FashionStoreSystem.Infrastructure.Extensions;
+using FashionStoreSystem.Infrastructure.ModelBinders;
 
 namespace FashionStoreSystem.Web
 {
@@ -30,7 +31,11 @@ namespace FashionStoreSystem.Web
 
             builder.Services.AddApplicationServices(typeof(IProductService));
 
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddControllersWithViews()
+                .AddMvcOptions(options =>
+                {
+                    options.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
+                });
 
             var app = builder.Build();
 

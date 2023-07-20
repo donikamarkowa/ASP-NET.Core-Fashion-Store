@@ -32,6 +32,20 @@ namespace FashionStoreSystem.Services.Data
             await this.dbContext.SaveChangesAsync();
         }
 
+        public async Task<string?> GetSellerIdByUserIdAsync(string userId)
+        {
+            Seller? seller = await this.dbContext
+                .Sellers
+                .FirstOrDefaultAsync(s => s.UserId.ToString() == userId);
+
+            if (seller == null)
+            {
+                return null;
+            }
+
+            return seller.Id.ToString();
+        }
+
         public async Task<bool> SellerExistsByPhoneNumberAsync(string phoneNumber)
         {
             bool result = await this.dbContext
