@@ -16,10 +16,16 @@ namespace FashionStoreSystem.Services.Data
 
         public async Task Create(string userId, BecomeSellerFormModel model)
         {
+            ApplicationUser user = await this.dbContext
+                .Users
+                .FirstAsync(u => u.Id.ToString() == userId);
+
             Seller newSeller = new Seller()
             {
                 UserId = Guid.Parse(userId),
                 PhoneNumber = model.PhoneNumber,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
             };
 
             await this.dbContext.Sellers.AddAsync(newSeller);
