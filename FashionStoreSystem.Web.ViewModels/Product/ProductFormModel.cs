@@ -35,6 +35,7 @@ namespace FashionStoreSystem.Web.ViewModels.Product
         [Display(Name = "Category")]
         public int CategoryId { get; set; }
 
-        IEnumerable<ProductSelectCategoryFormModel> Categories { get; set; }
+        [Required]
+        public IEnumerable<ProductSelectCategoryFormModel> Categories { get; set; }
     }
 }
