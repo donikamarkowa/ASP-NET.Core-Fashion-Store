@@ -13,8 +13,6 @@
             <br />
             <a asp-controller="Product" asp-action="Details" asp-route-id="@Model.Id"
                class="btn btn-primary">Details</a>
-            <a asp-controller="Product" asp-action="Edit" asp-route-id="@Model.Id"
-               class="btn btn-info">Edit</a>
             <form class="ml-2" asp-controller="Favorites" asp-action="AddToFavorites" asp-route-id="@Model.Id" method="post">
                 <input class="btn btn-secondary" type="submit" value="Add To Favorites" />
             </form>
