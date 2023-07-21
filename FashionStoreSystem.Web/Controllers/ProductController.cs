@@ -124,17 +124,25 @@ namespace FashionStoreSystem.Web.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Details(string id)
         {
-            ProductDetailsViewModel? viewModel = await this.productService
-                .GetDetailsByIdAsync(id);
+            bool productExists = await this.productService
+                .ExistsByIdAsync(id);
 
-            if (viewModel == null)
+            if (!productExists)
             {
                 this.TempData[ErrorMessage] = "Product with the provided id does not exist!";
 
                 return this.RedirectToAction("All", "Product");
             }
+            ProductDetailsViewModel viewModel = await this.productService
+                .GetDetailsByIdAsync(id);
 
             return View(viewModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(string id)
+        {
+
         }
     }
 }

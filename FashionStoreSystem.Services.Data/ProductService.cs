@@ -130,20 +130,25 @@ namespace FashionStoreSystem.Services.Data
             await this.dbContext.SaveChangesAsync();
         }
 
-        public async Task<ProductDetailsViewModel?> GetDetailsByIdAsync(string productId)
+        public async Task<bool> ExistsByIdAsync(string productId)
         {
-            Product? product = await this.dbContext
+            bool result = await this.dbContext
+                .Products
+                .Where(p => p.IsActive)
+                .AnyAsync(p => p.Id.ToString() == productId);
+
+            return result;
+        }
+
+        public async Task<ProductDetailsViewModel> GetDetailsByIdAsync(string productId)
+        {
+            Product product = await this.dbContext
                 .Products
                 .Include(p => p.Category)
                 .Include(p => p.Seller)
                 .ThenInclude(a => a.User)
                 .Where(p => p.IsActive)
-                .FirstOrDefaultAsync(p => p.Id.ToString() == productId);
-
-            if (product == null)
-            {
-                return null;
-            }
+                .FirstAsync(p => p.Id.ToString() == productId);
 
             return new ProductDetailsViewModel()
             {
@@ -160,6 +165,25 @@ namespace FashionStoreSystem.Services.Data
                     PhoneNumber = product.Seller.PhoneNumber,
                     Email = product.Seller.User.Email,
                 }
+            };
+        }
+
+        public async Task<ProductFormModel> GetProductForEditByIdAsync(string productId)
+        {
+            Product product = await this.dbContext
+                .Products
+                .Include(p => p.Category)
+                .Where(p => p.IsActive)
+                .FirstAsync(p => p.Id.ToString() == productId);
+
+            return new ProductFormModel()
+            {
+                Name = product.Name,
+                Size = product.Size,
+                Description = product.Description,
+                Price = product.Price,
+                ImageUrl = product.ImageUrl,
+                CategoryId = product.CategoryId,
             };
         }
 

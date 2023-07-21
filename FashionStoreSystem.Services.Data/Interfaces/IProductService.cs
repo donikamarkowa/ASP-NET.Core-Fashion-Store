@@ -16,6 +16,10 @@ namespace FashionStoreSystem.Services.Data.Interfaces
 
         Task<IEnumerable<ProductAllViewModel>> AllBySellerIdAsync(string sellerId);
 
-        Task<ProductDetailsViewModel?> GetDetailsByIdAsync(string productId);
+        Task<bool> ExistsByIdAsync(string productId);
+
+        Task<ProductDetailsViewModel> GetDetailsByIdAsync(string productId);
+
+        Task<ProductFormModel> GetProductForEditByIdAsync(string productId);
     }
 }
