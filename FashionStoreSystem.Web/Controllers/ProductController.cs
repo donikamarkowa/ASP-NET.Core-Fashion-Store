@@ -119,5 +119,22 @@ namespace FashionStoreSystem.Web.Controllers
 
             return this.View(myProducts);
         }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> Details(string id)
+        {
+            ProductDetailsViewModel? viewModel = await this.productService
+                .GetDetailsByIdAsync(id);
+
+            if (viewModel == null)
+            {
+                this.TempData[ErrorMessage] = "Product with the provided id does not exist!";
+
+                return this.RedirectToAction("All", "Product");
+            }
+
+            return View(viewModel);
+        }
     }
 }

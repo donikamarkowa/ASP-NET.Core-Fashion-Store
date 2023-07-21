@@ -5,6 +5,7 @@ using FashionStoreSystem.Web.Data;
 using FashionStoreSystem.Web.ViewModels.Home;
 using FashionStoreSystem.Web.ViewModels.Product;
 using FashionStoreSystem.Web.ViewModels.Product.Enums;
+using FashionStoreSystem.Web.ViewModels.Seller;
 using Microsoft.EntityFrameworkCore;
 
 namespace FashionStoreSystem.Services.Data
@@ -78,7 +79,8 @@ namespace FashionStoreSystem.Services.Data
         {
             IEnumerable<ProductAllViewModel> allSellerProducts = await this.dbContext
                 .Products
-                .Where(p => p.SellerId.ToString() == sellerId)
+                .Where(p => p.IsActive 
+                         && p.SellerId.ToString() == sellerId)
                 .Select(p => new ProductAllViewModel()
                 {
                     Id = p.Id.ToString(),
@@ -126,6 +128,39 @@ namespace FashionStoreSystem.Services.Data
 
             await this.dbContext.Products.AddAsync(newProduct);
             await this.dbContext.SaveChangesAsync();
+        }
+
+        public async Task<ProductDetailsViewModel?> GetDetailsByIdAsync(string productId)
+        {
+            Product? product = await this.dbContext
+                .Products
+                .Include(p => p.Category)
+                .Include(p => p.Seller)
+                .ThenInclude(a => a.User)
+                .Where(p => p.IsActive)
+                .FirstOrDefaultAsync(p => p.Id.ToString() == productId);
+
+            if (product == null)
+            {
+                return null;
+            }
+
+            return new ProductDetailsViewModel()
+            {
+                Id = product.Id.ToString(),
+                Size = product.Size,
+                Name = product.Name,
+                ImageUrl = product.ImageUrl,
+                Price = product.Price,
+                Description = product.Description,
+                Seller = new SellerInfoOnHouseViewModel()
+                {
+                    FirstName = product.Seller.FirstName,
+                    LastName = product.Seller.LastName,
+                    PhoneNumber = product.Seller.PhoneNumber,
+                    Email = product.Seller.User.Email,
+                }
+            };
         }
 
         public async Task<IEnumerable<IndexViewModel>> TopThreeCheapestProductsAsync()

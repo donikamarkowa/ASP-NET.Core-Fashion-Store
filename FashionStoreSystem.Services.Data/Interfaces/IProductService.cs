@@ -15,5 +15,7 @@ namespace FashionStoreSystem.Services.Data.Interfaces
         Task<IEnumerable<ProductAllViewModel>> AllByUserIdAsync(string userId);
 
         Task<IEnumerable<ProductAllViewModel>> AllBySellerIdAsync(string sellerId);
+
+        Task<ProductDetailsViewModel?> GetDetailsByIdAsync(string productId);
     }
 }

@@ -1,0 +1,59 @@
+﻿@model ProductDetailsViewModel
+
+@{
+    ViewBag.Title = "Product Details";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="container" style="display:inline">
+    <div class="row">
+        <div class="col-4">
+            <img class="card-img-top" style="width: 20rem;"
+                 src="@Model.ImageUrl" alt="Product Image">
+        </div>
+        <div class="card col-8 border-0">
+            <p style="font-size:25px;"><u>@Model.Name</u></p>
+            <p>Size: <b>@Model.Size</b></p>
+            <p>
+                Price:
+                <b>@($"{Model.Price:f2}") BGN</b>
+            </p>
+            <p>@Model.Description</p>
+            <p>Category: <b>@Model.Category</b></p>
+            <div class="form-inline">
+                @if (this.User.Identity?.IsAuthenticated ?? false)
+                {
+                    <a class="btn btn-primary" asp-controller="Product" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+                    <a class="ml-2 btn btn-info" asp-controller="Product" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+                }
+            </div>
+            <p></p>
+@*            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Seller Info</h5>
+                    <p class="card-text">First Name:  @Model.Seller.FirstName</p>
+                    <p class="card-text">Last Name:  @Model.Seller.LastName</p>
+                    <p class="card-text">Email:  @Model.Seller.Email</p>
+                    <p class="card-text">Phone Number: @Model.Seller.PhoneNumber</p>
+                </div>
+            </div>*@
+            <div class="card" style="width: 18rem; border: 2px solid #007BFF; border-radius: 10px; background-color: #F8F9FA;">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Seller Info <i class="far fa-smile-wink"></i></h5>
+                    <hr>
+                    <div class="text-center">
+                        <i class="fas fa-user-circle fa-4x text-primary"></i>
+                    </div>
+                    <p class="card-text mt-3"><i class="fas fa-user"></i>First Name:@Model.Seller.FirstName</p>
+                    <p class="card-text"><i class="fas fa-user"></i> Last Name: @Model.Seller.LastName</p>
+                    <p class="card-text"><i class="fas fa-envelope"></i> Email: @Model.Seller.Email</p>
+                    <p class="card-text"><i class="fas fa-phone"></i> Phone Number: @Model.Seller.PhoneNumber</p>
+                    <div class="text-center mt-4">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
