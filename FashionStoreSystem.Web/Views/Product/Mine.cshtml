@@ -1,0 +1,21 @@
+﻿@model List<ProductAllViewModel>
+@{
+    ViewData["Title"] = "My Products";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+<hr/>
+
+@if (!Model.Any())
+{
+    <h2 class="text-center">You do not have any products yet!</h2>
+}
+else
+{
+    <div class="row">
+        @foreach (ProductAllViewModel product in Model)
+        {
+            <partial name="_ProductPartial" model="product"/>
+        }
+    </div>
+}

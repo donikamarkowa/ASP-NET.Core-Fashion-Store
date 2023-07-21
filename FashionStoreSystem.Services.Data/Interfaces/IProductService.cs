@@ -11,5 +11,9 @@ namespace FashionStoreSystem.Services.Data.Interfaces
         Task CreateAsync(ProductFormModel formModel, string SellerId);
 
         Task<AllProductsFilteredAndPagedServiceModel> AllAsync(AllProductsQueryModel queryModel);
+
+        Task<IEnumerable<ProductAllViewModel>> AllByUserIdAsync(string userId);
+
+        Task<IEnumerable<ProductAllViewModel>> AllBySellerIdAsync(string sellerId);
     }
 }

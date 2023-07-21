@@ -74,6 +74,43 @@ namespace FashionStoreSystem.Services.Data
             
         }
 
+        public async Task<IEnumerable<ProductAllViewModel>> AllBySellerIdAsync(string sellerId)
+        {
+            IEnumerable<ProductAllViewModel> allSellerProducts = await this.dbContext
+                .Products
+                .Where(p => p.SellerId.ToString() == sellerId)
+                .Select(p => new ProductAllViewModel()
+                {
+                    Id = p.Id.ToString(),
+                    Name = p.Name,
+                    Size = p.Size,
+                    ImageUrl = p.ImageUrl,
+                    Price = p.Price,
+                })
+                .ToArrayAsync();
+
+            return allSellerProducts;
+        }
+
+        public async Task<IEnumerable<ProductAllViewModel>> AllByUserIdAsync(string userId)
+        {
+            IEnumerable<ProductAllViewModel> allUserBooks = await this.dbContext
+               .Purchases
+               .Include(p => p.Product)
+               .Where(p => p.UserId.ToString() == userId)
+               .Select(p => new ProductAllViewModel
+               {
+                   Id = p.Product.Id.ToString(),
+                   Name = p.Product.Name,
+                   Size = p.Product.Size,
+                   ImageUrl = p.Product.ImageUrl,
+                   Price = p.Product.Price,
+               })
+               .ToArrayAsync();
+
+            return allUserBooks;
+        }
+
         public async Task CreateAsync(ProductFormModel formModel, string sellerId)
         {
             Product newProduct = new Product()
