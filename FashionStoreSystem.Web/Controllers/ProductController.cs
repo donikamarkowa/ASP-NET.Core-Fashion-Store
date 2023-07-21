@@ -1,5 +1,6 @@
 ﻿using FashionStoreSystem.Infrastructure.Extensions;
 using FashionStoreSystem.Services.Data.Interfaces;
+using FashionStoreSystem.Services.Data.Models.Product;
 using FashionStoreSystem.Web.ViewModels.Product;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -20,9 +21,16 @@ namespace FashionStoreSystem.Web.Controllers
             this.productService = productService;
         }
         [AllowAnonymous]
-        public async Task<IActionResult> All()
+        public async Task<IActionResult> All([FromQuery] AllProductsQueryModel queryModel)
         {
-            return this.Ok();
+            AllProductsFilteredAndPagedServiceModel serviceModel = 
+                await this.productService.AllAsync(queryModel); 
+
+            queryModel.Products = serviceModel.Products;
+            queryModel.TotalProducts = serviceModel.TotalProductsCount;
+            queryModel.Categories = await this.categoryService.AllCategoryNamesAsync();
+
+            return this.View(queryModel);
         }
 
         [HttpGet]

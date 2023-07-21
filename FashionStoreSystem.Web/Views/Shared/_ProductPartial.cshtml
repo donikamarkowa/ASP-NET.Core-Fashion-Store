@@ -1,0 +1,24 @@
+﻿@model ProductAllViewModel
+
+<div class="col-md-4">
+    <div class="card mb-3">
+        <img class="card-img-top" src="@Model.ImageUrl" alt="Product Image">
+        <div class="card-body text-center">
+            <h4>@Model.Name</h4>
+            <h6>Size: <b>@Model.Size</b></h6>
+            <h6>
+                Price:
+                <b>@($"{Model.Price:f2}") BGN</b>
+            </h6>
+            <br />
+            <a asp-controller="Product" asp-action="Details" asp-route-id="@Model.Id"
+               class="btn btn-primary">Details</a>
+            <form class="ml-2" asp-controller="Favorites" asp-action="AddToFavorites" asp-route-id="@Model.Id" method="post">
+                <input class="btn btn-info" type="submit" value="Add To Favorites" />
+            </form>
+            <form class="ml-2" asp-controller="Cart" asp-action="AddToCart" asp-route-id="@Model.Id" method="post">
+                <input class="btn btn-secondary" type="submit" value="Add To Cart" />
+            </form>
+        </div>
+    </div>
+</div>
