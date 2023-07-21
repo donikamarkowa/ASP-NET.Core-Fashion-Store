@@ -32,6 +32,8 @@ namespace FashionStoreSystem.Data.Models
         [Required]
         public decimal Price { get; set; }
 
+        public bool IsActive { get; set; }
+
         [ForeignKey(nameof(Category))]  
         public int CategoryId { get; set; }
         public virtual Category Category { get; set; } = null!;

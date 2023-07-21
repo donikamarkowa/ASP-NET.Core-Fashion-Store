@@ -51,6 +51,7 @@ namespace FashionStoreSystem.Services.Data
             };
 
             IEnumerable<ProductAllViewModel> allProducts = await productsQuery
+                .Where(p => p.IsActive)
                 .Skip((queryModel.CurrentPage - 1) * queryModel.ProductsPerPage)
                 .Take(queryModel.ProductsPerPage)
                 .Select(p => new ProductAllViewModel()
@@ -94,6 +95,7 @@ namespace FashionStoreSystem.Services.Data
         {
             IEnumerable<IndexViewModel> topThreeProducts = await this.dbContext
                 .Products
+                .Where(p => p.IsActive)
                 .OrderBy(p => p.Price)
                 .Take(3)
                 .Select(p => new IndexViewModel()

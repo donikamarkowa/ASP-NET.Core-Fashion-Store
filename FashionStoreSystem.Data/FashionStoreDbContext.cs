@@ -16,6 +16,11 @@ namespace FashionStoreSystem.Web.Data
         {
             builder
                 .Entity<Product>()
+                .Property(p => p.IsActive)
+                .HasDefaultValue(true);
+
+            builder
+                .Entity<Product>()
                 .HasOne(p => p.Category)
                 .WithMany(c => c.Products)
                 .HasForeignKey(p => p.CategoryId)
