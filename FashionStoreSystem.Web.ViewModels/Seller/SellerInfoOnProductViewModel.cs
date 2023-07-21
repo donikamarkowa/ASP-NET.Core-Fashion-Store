@@ -2,7 +2,7 @@
 
 namespace FashionStoreSystem.Web.ViewModels.Seller
 {
-    public class SellerInfoOnHouseViewModel
+    public class SellerInfoOnProductViewModel
     {
         [Display(Name = "First Name")]
         public string FirstName { get; set; } = null!;

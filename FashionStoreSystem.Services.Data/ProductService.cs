@@ -130,6 +130,23 @@ namespace FashionStoreSystem.Services.Data
             await this.dbContext.SaveChangesAsync();
         }
 
+        public async Task EditProductByIdAndFormModelAsync(string productId, ProductFormModel formModel)
+        {
+            Product product = await this.dbContext
+                .Products
+                .Where(p => p.IsActive)
+                .FirstAsync(p => p.Id.ToString() == productId); 
+
+            product.Name = formModel.Name;
+            product.Description = formModel.Description;
+            product.Size = formModel.Size;
+            product.ImageUrl = formModel.ImageUrl;
+            product.Price = formModel.Price;
+            product.CategoryId = formModel.CategoryId;
+
+            await this.dbContext.SaveChangesAsync();
+        }
+
         public async Task<bool> ExistsByIdAsync(string productId)
         {
             bool result = await this.dbContext
@@ -158,7 +175,7 @@ namespace FashionStoreSystem.Services.Data
                 ImageUrl = product.ImageUrl,
                 Price = product.Price,
                 Description = product.Description,
-                Seller = new SellerInfoOnHouseViewModel()
+                Seller = new SellerInfoOnProductViewModel()
                 {
                     FirstName = product.Seller.FirstName,
                     LastName = product.Seller.LastName,
@@ -185,6 +202,16 @@ namespace FashionStoreSystem.Services.Data
                 ImageUrl = product.ImageUrl,
                 CategoryId = product.CategoryId,
             };
+        }
+
+        public async Task<bool> IsSellerWithIdOwnerOfProductWithIdAsync(string productId, string sellerId)
+        {
+            Product product = await this.dbContext
+                .Products
+                .Where(p => p.IsActive)
+                .FirstAsync(p => p.Id.ToString() == productId);
+
+            return product.SellerId.ToString() == sellerId; 
         }
 
         public async Task<IEnumerable<IndexViewModel>> TopThreeCheapestProductsAsync()
