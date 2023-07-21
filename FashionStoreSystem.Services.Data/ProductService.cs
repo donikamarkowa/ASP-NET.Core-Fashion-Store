@@ -132,6 +132,18 @@ namespace FashionStoreSystem.Services.Data
             return newProduct.Id.ToString();    
         }
 
+        public async Task DeleteProductByIdAsync(string productId)
+        {
+            Product productToDelete = await this.dbContext
+                .Products
+                .Where(p => p.IsActive)
+                .FirstAsync(p => p.Id.ToString() == productId);
+
+            productToDelete.IsActive = false;
+
+            await this.dbContext.SaveChangesAsync();
+        }
+
         public async Task EditProductByIdAndFormModelAsync(string productId, ProductFormModel formModel)
         {
             Product product = await this.dbContext
@@ -184,6 +196,20 @@ namespace FashionStoreSystem.Services.Data
                     PhoneNumber = product.Seller.PhoneNumber,
                     Email = product.Seller.User.Email,
                 }
+            };
+        }
+
+        public async Task<ProductPreDeleteDetailsViewModel> GetProductForDeleteByIdAsync(string productId)
+        {
+            Product product = await this.dbContext
+                .Products
+                .Where(p => p.IsActive)
+                .FirstAsync(p => p.Id.ToString() == productId);
+
+            return new ProductPreDeleteDetailsViewModel()
+            {
+                Name = product.Name,
+                ImageUrl = product.ImageUrl
             };
         }
 

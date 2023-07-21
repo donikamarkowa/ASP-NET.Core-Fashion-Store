@@ -25,5 +25,9 @@ namespace FashionStoreSystem.Services.Data.Interfaces
         Task<bool> IsSellerWithIdOwnerOfProductWithIdAsync(string productId, string sellerId);
 
         Task EditProductByIdAndFormModelAsync(string productId, ProductFormModel formModel);
+
+        Task<ProductPreDeleteDetailsViewModel> GetProductForDeleteByIdAsync(string productId);
+
+        Task DeleteProductByIdAsync(string productId);
     }
 }
