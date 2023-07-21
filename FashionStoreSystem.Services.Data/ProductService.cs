@@ -113,7 +113,7 @@ namespace FashionStoreSystem.Services.Data
             return allUserBooks;
         }
 
-        public async Task CreateAsync(ProductFormModel formModel, string sellerId)
+        public async Task<string> CreateAndReturnIdAsync(ProductFormModel formModel, string sellerId)
         {
             Product newProduct = new Product()
             {
@@ -128,6 +128,8 @@ namespace FashionStoreSystem.Services.Data
 
             await this.dbContext.Products.AddAsync(newProduct);
             await this.dbContext.SaveChangesAsync();
+
+            return newProduct.Id.ToString();    
         }
 
         public async Task EditProductByIdAndFormModelAsync(string productId, ProductFormModel formModel)

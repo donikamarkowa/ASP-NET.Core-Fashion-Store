@@ -88,7 +88,9 @@ namespace FashionStoreSystem.Web.Controllers
             {
                 string? sellerId = 
                     await this.sellerService.GetSellerIdByUserIdAsync(this.User.GetId()!);
-                await this.productService.CreateAsync(model, sellerId!);
+                string productId = await this.productService.CreateAndReturnIdAsync(model, sellerId!);
+
+                return this.RedirectToAction("Details", "Product", new { id = productId });
             }
             catch (Exception)
             {
@@ -98,7 +100,6 @@ namespace FashionStoreSystem.Web.Controllers
                 return this.View(model);
             }
 
-            return this.RedirectToAction("All", "Product");
         }
 
         [HttpGet]

@@ -8,7 +8,7 @@ namespace FashionStoreSystem.Services.Data.Interfaces
     {
         Task<IEnumerable<IndexViewModel>> TopThreeCheapestProductsAsync();
 
-        Task CreateAsync(ProductFormModel formModel, string SellerId);
+        Task<string> CreateAndReturnIdAsync(ProductFormModel formModel, string SellerId);
 
         Task<AllProductsFilteredAndPagedServiceModel> AllAsync(AllProductsQueryModel queryModel);
 
