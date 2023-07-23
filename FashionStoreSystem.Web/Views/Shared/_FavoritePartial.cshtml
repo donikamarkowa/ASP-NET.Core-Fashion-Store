@@ -1,1 +1,38 @@
-﻿
+﻿@model FavoriteViewModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="col-md-4 mb-3">
+        <div class="card shadow">
+            <img src="@Model.ImageUrl" class="card-img-top" alt="Product Image">
+            <div class="card-body">
+                <h5 class="card-title">@Model.Name</h5>
+                <p class="card-text">Size: <b>@Model.Size</b></p>
+                <p class="card-text">
+                    Price:
+                    <b>@($"{Model.Price:f2} BGN")</b>
+                </p>
+                <div class="d-flex justify-content-between mt-3">
+                    <a asp-controller="Product" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-primary" aria-label="Details">
+                        <span aria-hidden="true">Details</span>
+                    </a>
+                    <form asp-controller="Favorite" asp-action="AddToCart" asp-route-id="@Model.Id" method="post">
+                        <button type="submit" class="btn btn-success" aria-label="Add To Cart">
+                            <span aria-hidden="true">Add To Cart</span>
+                        </button>
+                    </form>
+                    <form asp-controller="Wishlist" asp-action="RemoveFromWishlist" asp-route-id="@Model.Id" method="post">
+                        <button type="submit" class="btn btn-danger" aria-label="Remove">
+                            <span aria-hidden="true">Remove From Favorite</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

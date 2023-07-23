@@ -319,7 +319,7 @@ namespace FashionStoreSystem.Web.Controllers
         public async Task<IActionResult> Delete(string id, ProductPreDeleteDetailsViewModel model)
         {
             bool productExists = await this.productService
-    .ExistsByIdAsync(id);
+                .ExistsByIdAsync(id);
 
             if (!productExists)
             {
