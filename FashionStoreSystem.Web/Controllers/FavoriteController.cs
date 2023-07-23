@@ -38,7 +38,7 @@ namespace FashionStoreSystem.Web.Controllers
             bool userHasFavorite = await this.favoriteService
                 .IsProductInFavoriteByUserIdAsync(id, this.User.GetId());
 
-            if (!userHasFavorite)
+            if (userHasFavorite)
             {
                 this.TempData[ErrorMessage] = "Selected product is already added to favorite by you!";
 
