@@ -69,24 +69,6 @@ namespace FashionStoreSystem.Web.Data
                 .HasForeignKey(p => p.ProductId)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            builder
-                .Entity<Cart>()
-                .HasKey(c => new {c.UserId, c.ProductId });
-
-            builder
-                .Entity<Cart>()
-                .HasOne(c => c.User)
-                .WithMany(u => u.CartProducts)
-                .HasForeignKey(c => c.UserId)
-                .OnDelete(DeleteBehavior.NoAction);
-
-            builder
-                .Entity<Cart>()
-                .HasOne(c => c.Product)
-                .WithMany(p => p.CartProducts)
-                .HasForeignKey(p => p.ProductId)
-                .OnDelete(DeleteBehavior.NoAction);
-
             builder.Entity<Category>()
                 .HasData(new Category()
                 {
@@ -156,6 +138,5 @@ namespace FashionStoreSystem.Web.Data
         public DbSet<Purchase> Purchases { get; init; } = null!;
         public DbSet<Seller> Sellers { get; init; } = null!;
         public DbSet<Favorite> Favorites { get; init; } = null!;
-        public DbSet<Cart> CartProducts { get; set; } = null!;
     }
 }

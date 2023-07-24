@@ -4,6 +4,7 @@ using FashionStoreSystem.Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FashionStoreSystem.Data.Migrations
 {
     [DbContext(typeof(FashionStoreDbContext))]
-    partial class FashionStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230724092235_UpdateNameToCartProduct")]
+    partial class UpdateNameToCartProduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -75,9 +77,6 @@ namespace FashionStoreSystem.Data.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<decimal>("Wallet")
-                        .HasColumnType("decimal(18,2)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -89,6 +88,21 @@ namespace FashionStoreSystem.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("FashionStoreSystem.Data.Models.CartProduct", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("UserId", "ProductId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("CartProducts");
                 });
 
             modelBuilder.Entity("FashionStoreSystem.Data.Models.Category", b =>
@@ -212,7 +226,7 @@ namespace FashionStoreSystem.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("af64ef5e-049f-4542-b515-0bd67bc5e9fc"),
+                            Id = new Guid("df7c3385-678f-4c59-bc99-f0735c34211c"),
                             CategoryId = 1,
                             Description = "The dress has narrow straps slits on the sides with a composition of 65% viscose, 32% polyamide, 3% elastane.",
                             ImageUrl = "https://static.reserved.com/media/catalog/product/2/6/2690T-99X-001-1-687951_3.jpg",
@@ -224,7 +238,7 @@ namespace FashionStoreSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("549172f5-e545-466d-a077-76ec9be9bf22"),
+                            Id = new Guid("7f20ab6b-04f7-4b96-83e3-ded289a27808"),
                             CategoryId = 2,
                             Description = "Kimono-style t-shirt in high-cotton jersey with a round neckline and short sleeves.",
                             ImageUrl = "https://static.reserved.com/media/catalog/product/2/2/2272T-99X-001-1-633007_2.jpg",
@@ -417,6 +431,25 @@ namespace FashionStoreSystem.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("FashionStoreSystem.Data.Models.CartProduct", b =>
+                {
+                    b.HasOne("FashionStoreSystem.Data.Models.Product", "Product")
+                        .WithMany("CartProducts")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("FashionStoreSystem.Data.Models.ApplicationUser", "User")
+                        .WithMany("CartProducts")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("FashionStoreSystem.Data.Models.Favorite", b =>
                 {
                     b.HasOne("FashionStoreSystem.Data.Models.Product", "Product")
@@ -538,6 +571,8 @@ namespace FashionStoreSystem.Data.Migrations
 
             modelBuilder.Entity("FashionStoreSystem.Data.Models.ApplicationUser", b =>
                 {
+                    b.Navigation("CartProducts");
+
                     b.Navigation("FavoriteProducts");
 
                     b.Navigation("Products");
@@ -550,6 +585,8 @@ namespace FashionStoreSystem.Data.Migrations
 
             modelBuilder.Entity("FashionStoreSystem.Data.Models.Product", b =>
                 {
+                    b.Navigation("CartProducts");
+
                     b.Navigation("FavoriteProducts");
 
                     b.Navigation("Users");

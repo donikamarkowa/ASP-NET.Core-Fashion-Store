@@ -14,6 +14,7 @@ namespace FashionStoreSystem.Data.Models
         {
             this.Id = Guid.NewGuid();
         }
+        public decimal Wallet { get; set; }
 
         [InverseProperty(nameof(Purchase.User))]
         public virtual ICollection<Purchase> Products { get; set; } = new List<Purchase>();
@@ -21,7 +22,5 @@ namespace FashionStoreSystem.Data.Models
         [InverseProperty(nameof(Favorite.User))]
         public virtual ICollection<Favorite> FavoriteProducts { get; set; } = new List<Favorite>();
 
-        [InverseProperty(nameof(Cart.User))]
-        public virtual ICollection<Cart> CartProducts { get; set; } = new List<Cart>();
     }
 }
