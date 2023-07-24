@@ -20,5 +20,8 @@ namespace FashionStoreSystem.Data.Models
 
         [InverseProperty(nameof(Favorite.User))]
         public virtual ICollection<Favorite> FavoriteProducts { get; set; } = new List<Favorite>();
+
+        [InverseProperty(nameof(Cart.User))]
+        public virtual ICollection<Cart> CartProducts { get; set; } = new List<Cart>();
     }
 }
