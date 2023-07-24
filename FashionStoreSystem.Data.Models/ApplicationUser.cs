@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FashionStoreSystem.Data.Models
 {
@@ -13,8 +14,11 @@ namespace FashionStoreSystem.Data.Models
         {
             this.Id = Guid.NewGuid();
         }
+
+        [InverseProperty(nameof(Purchase.User))]
         public virtual ICollection<Purchase> Products { get; set; } = new List<Purchase>();
 
+        [InverseProperty(nameof(Favorite.User))]
         public virtual ICollection<Favorite> FavoriteProducts { get; set; } = new List<Favorite>();
     }
 }

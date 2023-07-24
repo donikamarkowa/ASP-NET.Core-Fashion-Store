@@ -5,6 +5,11 @@ namespace FashionStoreSystem.Data.Models
 {
     public class Seller
     {
+        public Seller()
+        {
+            this.Id = Guid.NewGuid();
+        }
+
         [Key]
         public Guid Id { get; set; }
 

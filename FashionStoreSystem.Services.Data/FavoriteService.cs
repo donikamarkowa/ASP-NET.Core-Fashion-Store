@@ -15,10 +15,11 @@ namespace FashionStoreSystem.Services.Data
         }
         public async Task AddToFavoriteAsync(string productId, string userId)
         {
+
             Favorite newFavoriteProduct = new Favorite()
             {
+                UserId = Guid.Parse(userId),
                 ProductId = Guid.Parse(productId),
-                UserId = Guid.Parse(userId)
             };
 
             await this.dbContext.Favorites.AddAsync(newFavoriteProduct);

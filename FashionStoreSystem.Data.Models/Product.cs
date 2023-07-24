@@ -42,8 +42,11 @@ namespace FashionStoreSystem.Data.Models
         public Guid SellerId { get; set; }
         public virtual Seller Seller { get; set; } = null!;
 
+
+        [InverseProperty(nameof(Purchase.Product))]
         public virtual ICollection<Purchase> Users { get; set; } = new List<Purchase>();
 
-        public ICollection<Favorite> FavoriteProducts { get; set; } = new List<Favorite>();
+        [InverseProperty(nameof(Favorite.Product))]
+        public virtual ICollection<Favorite> FavoriteProducts { get; set; } = new List<Favorite>();
     }
 }
