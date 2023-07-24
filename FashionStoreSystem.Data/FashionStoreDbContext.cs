@@ -59,14 +59,14 @@ namespace FashionStoreSystem.Web.Data
                 .Entity<Favorite>()
                 .HasOne(f => f.User)
                 .WithMany(u => u.FavoriteProducts)
-                .HasForeignKey(f => f.ProductId)
+                .HasForeignKey(f => f.UserId)
                 .OnDelete(DeleteBehavior.NoAction);
 
             builder
                 .Entity<Favorite>()
                 .HasOne(f => f.Product)
                 .WithMany(p => p.FavoriteProducts)
-                .HasForeignKey(p => p.UserId)
+                .HasForeignKey(p => p.ProductId)
                 .OnDelete(DeleteBehavior.NoAction);
 
             builder.Entity<Category>()
