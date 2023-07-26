@@ -44,5 +44,11 @@ namespace FashionStoreSystem.Common
             public const int PhoneMinLength = 4;
             public const int PhoneMaxLength = 20;
         }
+
+        public static class User
+        {
+            public const string WalletMinLength = "5";
+            public const string WalletMaxLength = "500";
+        }
     }
 }

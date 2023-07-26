@@ -1,0 +1,31 @@
+﻿@model UserViewModel
+
+@{
+    ViewBag.Title = "My Wallet";
+}
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="wallet-container">
+        <center><h1><b>My Wallet</b></h1></center>
+
+        <div class="balance-card">
+            <h5 class="card-title">Current Balance</h5>
+            <h6>$@Model.Wallet</h6>
+        </div>
+
+        <div class="add-money-card">
+            <h3><b>Add Money</b></h3>
+            <div class="input-group mb-3">
+                <span class="input-group-text">$</span>
+                <input type="number" min="1" step="1" class="form-control" id="money" placeholder="Enter your money">
+                <button class="btn btn-success btn-lg">Add Money</button>
+            </div>
+        </div>
+    </div>
+</body>
