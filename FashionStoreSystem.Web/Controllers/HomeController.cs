@@ -28,7 +28,13 @@ namespace FashionStoreSystem.Web.Controllers
             {
                 return this.View("Error404");
             }
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+
+            if (statusCode == 401)
+            {
+                return this.View("Error401");
+            }
+
+            return this.View();
         }
     }
 }
