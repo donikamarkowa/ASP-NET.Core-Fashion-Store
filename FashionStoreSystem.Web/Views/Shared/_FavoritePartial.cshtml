@@ -22,7 +22,7 @@
                             <span aria-hidden="true">Remove From Favorite</span>
                         </button>
                     </form>
-                    <form asp-controller="Favorite" asp-action="Buy" asp-route-id="@Model.Id" method="post">
+                    <form asp-controller="Favorite" asp-action="Buy" asp-route-id="@Model.Id" method="get">
                         <button type="submit" class="btn btn-success" aria-label="Buy">
                             <span aria-hidden="true">Buy</span>
                         </button>

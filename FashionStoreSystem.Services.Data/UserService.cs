@@ -36,6 +36,46 @@ namespace FashionStoreSystem.Services.Data
             return userWallet;
         }
 
+        public async Task<bool> IsProductInUserFavoriteAsync(string productId, string userId)
+        {
+            var user = await this.dbContext
+                .Users
+                .FirstAsync(u => u.Id.ToString() == userId);
+
+            var isProductInFavorite = user
+                .FavoriteProducts
+                .Any(fp => fp.ProductId.ToString() == productId);
+
+            if (!isProductInFavorite)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public async Task UserBuyProductAsync(string productId, string userId)
+        {
+            var product = await this.dbContext
+                .Products
+                .FirstAsync(p => p.Id.ToString() == productId);
+
+            var user = await this.dbContext
+                .Users
+                .FirstAsync(u => u.Id.ToString() == userId);
+
+            user.Wallet -= product.Price;
+
+            Purchase purchase = new Purchase()
+            {
+                UserId = Guid.Parse(userId),
+                ProductId = Guid.Parse(productId)
+            };
+
+            await this.dbContext.Purchases.AddAsync(purchase);
+            await this.dbContext.SaveChangesAsync();
+        }
+
         public async Task<bool> UserExistsByIdAsync(string userId)
         { 
             bool result = await this.dbContext
@@ -45,5 +85,22 @@ namespace FashionStoreSystem.Services.Data
             return result;
         }
 
+        public async Task<bool> UserHasEnoughMoneyToBuyProductAsync(string productId, string userId)
+        {
+            var product = await this.dbContext
+                .Products
+                .FirstAsync(p => p.Id.ToString() == productId);
+
+            var user = await this.dbContext
+                .Users
+                .FirstAsync(u => u.Id.ToString() == userId);
+
+            if (product.Price < user.Wallet)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

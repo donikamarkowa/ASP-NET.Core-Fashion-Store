@@ -14,11 +14,21 @@ namespace FashionStoreSystem.Web.Controllers
         private readonly ICategoryService categoryService;
         private readonly ISellerService sellerService;
         private readonly IProductService productService;
-        public ProductController(ICategoryService categoryService, ISellerService sellerService, IProductService productService)
+        private readonly IUserService userService;
+        private readonly IFavoriteService favoriteService;
+        public ProductController(
+            ICategoryService categoryService,
+            ISellerService sellerService, 
+            IProductService productService,
+            IUserService userService,
+            IFavoriteService favoriteService)
         {
             this.categoryService = categoryService;
             this.sellerService = sellerService;
             this.productService = productService;
+            this.userService = userService;
+            this.favoriteService = favoriteService;
+
         }
         [AllowAnonymous]
         public async Task<IActionResult> All([FromQuery] AllProductsQueryModel queryModel)
@@ -361,6 +371,59 @@ namespace FashionStoreSystem.Web.Controllers
             {
                 return this.GeneralError();
             }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Buy(string id)
+        {
+            bool isUserSeller = await this.sellerService
+                .SellerExistsByUserIdAsync(this.User.GetId());
+
+            if (isUserSeller)
+            {
+                this.TempData[ErrorMessage] = "Seller can't buy products! Please register as a user!";
+
+                return this.RedirectToAction("Index", "Home");
+            }
+
+            bool productExists = await this.productService
+                .ExistsByIdAsync(id);
+
+            if (!productExists)
+            {
+                this.TempData[ErrorMessage] = "Product with the provided id does not exist!";
+
+                return this.RedirectToAction("All", "Product");
+            }
+
+            bool userHasEnoughMoney = await this.userService.UserHasEnoughMoneyToBuyProductAsync(id, this.User.GetId());
+
+            if (!userHasEnoughMoney)
+            {
+                this.TempData[ErrorMessage] = "You don't have enough money to buy this product! If you have more money, you can add them in your wallet!";
+
+                return this.RedirectToAction("Add", "User");
+            }
+
+            bool isProductInFavorite = await this.userService.IsProductInUserFavoriteAsync(id, this.User.GetId());
+            if (isProductInFavorite)
+            {
+                await this.favoriteService.RemoveFromFavoriteAsync(id, this.User.GetId());
+            }
+
+            try
+            {
+                await this.userService.UserBuyProductAsync(id, this.User.GetId());
+
+                TempData[SuccessMessage] = "Successfully purchased this product!";
+
+                return this.RedirectToAction("All", "Product");
+            }
+            catch (Exception)
+            {
+                return this.GeneralError();
+            }
+
         }
 
         private IActionResult GeneralError()
