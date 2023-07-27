@@ -11,6 +11,7 @@ namespace FashionStoreSystem.Web.Controllers
     public class UserController : Controller
     {
         private readonly IUserService userService;
+
         public UserController(IUserService userService)
         {
             this.userService = userService;
@@ -18,7 +19,7 @@ namespace FashionStoreSystem.Web.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> MyWallet()
+        public async Task<IActionResult> Add()
         {
             string userId = this.User.GetId();
             bool userExists = await this.userService.UserExistsByIdAsync(userId);
@@ -30,11 +31,19 @@ namespace FashionStoreSystem.Web.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            return View();
+            decimal currentWalletBalance = await this.userService.GetWalletBalanceByUserIdAsync(userId);
+
+            var userViewModel = new UserViewModel
+            {
+                Id = userId,
+                Wallet = currentWalletBalance
+            };
+
+            return View(userViewModel);
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddMoney(UserViewModel model)
+        public async Task<IActionResult> Add(UserViewModel model)
         {
             string userId = this.User.GetId();
             bool userExists = await this.userService.UserExistsByIdAsync(userId);
@@ -44,6 +53,21 @@ namespace FashionStoreSystem.Web.Controllers
                 this.TempData[ErrorMessage] = "User with the provided id does not exist!";
 
                 return RedirectToAction("Index", "Home");
+            }
+
+            try
+            {
+                await this.userService.AddMoneyToWallet(this.User.GetId(), model.Wallet);
+
+                this.TempData[SuccessMessage] = "You successfully added money to your wallet!";
+
+                return RedirectToAction("All", "Product");
+            }
+            catch (Exception)
+            {
+                this.ModelState.AddModelError(string.Empty, "Unexpected error occurred while trying to add money to your wallet! Please try again later or contact administrator!");
+
+                return this.View(model);
             }
         }
     }

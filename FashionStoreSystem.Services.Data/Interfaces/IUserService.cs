@@ -8,6 +8,7 @@ namespace FashionStoreSystem.Services.Data.Interfaces
 
         Task AddMoneyToWallet(string userId, decimal money);
 
+        Task<decimal> GetWalletBalanceByUserIdAsync(string userId); 
 
     }
 }

@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using static FashionStoreSystem.Common.EntityValidationConstants.User
+using static FashionStoreSystem.Common.EntityValidationConstants.User;
 
 namespace FashionStoreSystem.Web.ViewModels.User
 {

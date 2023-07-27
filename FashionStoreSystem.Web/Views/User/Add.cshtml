@@ -1,0 +1,59 @@
+﻿@model UserViewModel
+
+@{
+    ViewBag.Title = "Add Money To Wallet";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+<style>
+    /* Custom CSS for the current balance box */
+    .balance-box {
+        background-color: #f8f9fa;
+        border: 2px solid #ced4da;
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Style the balance amount */
+    .balance-amount {
+        font-size: 28px;
+        font-weight: bold;
+        color: #007bff;
+    }
+</style>
+
+<div class="row">
+    <div class="col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+        <div class="balance-box mt-4">
+            <h4>Your Current Balance</h4>
+            <h2 class="balance-amount">@Model.Wallet BGN</h2>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="Wallet" class="text-black">Amount To Add:</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">BGN</span>
+                    </div>
+                    <input class="form-control" name="Wallet" placeholder="Enter your money">
+                </div>
+                <span asp-validation-for="Wallet" class="small text-danger"></span>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-primary mt-3" type="submit">Add Money To Wallet</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

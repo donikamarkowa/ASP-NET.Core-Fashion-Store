@@ -117,7 +117,7 @@ namespace FashionStoreSystem.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Favorite()
+        public async Task<IActionResult> MyFavorite()
         {
             bool isUserSeller = await this.sellerService
                 .SellerExistsByUserIdAsync(this.User.GetId());
