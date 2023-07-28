@@ -27,7 +27,7 @@ namespace FashionStoreSystem.WebApi
             {
                 setup.AddPolicy("FashionStoreSystem", policyBuilder =>
                 {
-                    policyBuilder.WithOrigins("https://localhost:7245")
+                    policyBuilder.WithOrigins("https://localhost:7189")
                         .AllowAnyHeader()
                         .AllowAnyMethod();
                 });

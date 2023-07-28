@@ -5,13 +5,13 @@
 
         if ($('#statistics_box').hasClass('d-none')) {
             $.get('https://localhost:7245/api/statistics', function (data) {
-                $(#total_dresses).text(data.total_dresses + "Dresses");
-                $(#total_tshirts).text(data.total_tshirts + "T-Shirts");
-                $(#total_trousers).text(data.total_trousers + "Trousers");
-                $(#total_jackets).text(data.total_jackets + "Jackets");
-                $(#total_jeans).text(data.total_jeans + "Jeans");
-                $(#total_accessories).text(data.total_ssessories + "Accessories");
-                $(#total_shoes).text(data.total_shoes + "Shoes");
+                $('#total_dresses').text(data.totalDresses + " pieces");
+                $('#total_tshirts').text(data.totalTshirts + " pieces");
+                $('#total_trousers').text(data.totalTrousers + " pieces");
+                $('#total_jackets').text(data.totalJackets + " pieces");
+                $('#total_jeans').text(data.totalJeans + " pieces");
+                $('#total_accessories').text(data.totalAccessories + " pieces");
+                $('#total_shoes').text(data.totalShoes + " pieces");
 
                 $('#statistics_box').removeClass('d-none');
 

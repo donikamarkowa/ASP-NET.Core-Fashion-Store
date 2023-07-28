@@ -57,27 +57,94 @@
     </a>
 </div>
 
-<div class="mb-5"></div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-HEI+do5+LUqQRY34/XtY7O3vjIat6fY5wm8JkzN2cgPTF6wSEr2EmO8Oo4OR8lJi3/Y0xrT0Vj2m31W0YmEKA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<div class="row">
-    <div class="col-12 text-center">
-        <button class="btn btn-primary" id="statistics_btn">Show Statistics</button>
-    </div>
-</div>
+<style>
+    #statistics_box {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        background: linear-gradient(to bottom right, #b3e5fc, #81d4fa);
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
-<div class="mt-4 p-5 bg-light d-none" id="statistics_box">
+    .statistics-item {
+        flex: 0 0 calc(50% - 20px);
+        margin-bottom: 20px;
+        padding: 10px;
+        border-radius: 8px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .statistics-icon {
+        font-size: 48px;
+        margin-bottom: 10px;
+        color: #007bff;
+    }
+
+    .statistics-label {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .statistics-value {
+        font-size: 18px;
+        color: #333;
+    }
+</style>
+    <div class="mb-5"></div>
+
     <div class="row">
-        <h2 class="col-md-6 text-center" id="total_dresses"></h2>
-        <h2 class="col-md-6 text-center" id="total_tshirts"></h2>
-        <h2 class="col-md-6 text-center" id="total_trousers"></h2>
-        <h2 class="col-md-6 text-center" id="total_jackets"></h2>
-        <h2 class="col-md-6 text-center" id="total_jeans"></h2>
-        <h2 class="col-md-6 text-center" id="total_accessories"></h2>
-        <h2 class="col-md-6 text-center" id="total_shoes"></h2>
+        <div class="col-12 text-center" id="statistics_btn_container">
+            <button class="btn btn-primary" id="statistics_btn">Show Statistics</button>
+        </div>
     </div>
-</div>
+
+    <div class="mt-4 bg-light d-none" id="statistics_box">
+        <div class="statistics-item">
+            <i class="fas fa-dress statistics-icon"></i>
+            <div class="statistics-label">Dresses</div>
+            <div class="statistics-value" id="total_dresses"></div>
+        </div>
+        <div class="statistics-item">
+            <i class="fas fa-tshirt statistics-icon"></i>
+            <div class="statistics-label">T-Shirts</div>
+            <div class="statistics-value" id="total_tshirts"></div>
+        </div>
+        <div class="statistics-item">
+            <i class="fas fa-tshirt statistics-icon"></i>
+            <div class="statistics-label">Trousers</div>
+            <div class="statistics-value" id="total_trousers"></div>
+        </div>
+        <div class="statistics-item">
+            <i class="fas fa-jacket statistics-icon"></i>
+            <div class="statistics-label">Jackets</div>
+            <div class="statistics-value" id="total_jackets"></div>
+        </div>
+        <div class="statistics-item">
+            <i class="fas fa-jeans statistics-icon"></i>
+            <div class="statistics-label">Jeans</div>
+            <div class="statistics-value" id="total_jeans"></div>
+        </div>
+        <div class="statistics-item">
+            <i class="fas fa-glasses statistics-icon"></i>
+            <div class="statistics-label">Accessories</div>
+            <div class="statistics-value" id="total_accessories"></div>
+        </div>
+        <div class="statistics-item">
+            <i class="fas fa-shoe-prints statistics-icon"></i>
+            <div class="statistics-label">Shoes</div>
+            <div class="statistics-value" id="total_shoes"></div>
+        </div>
+    </div>
 
 @section Scripts
 {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" integrity="sha512-YohS2f/vp3YbHTPLAqK9rIDrsd3q69YcRTTOveWAM3d9cGjOaOMvX2KDm5gQIzTU9M+9JCqJotDq5AmBEfVAw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>statistics();</script>
 }
