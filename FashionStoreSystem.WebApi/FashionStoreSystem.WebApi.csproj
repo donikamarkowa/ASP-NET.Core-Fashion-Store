@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FashionStoreSystem.Common\FashionStoreSystem.Common.csproj" />
+    <ProjectReference Include="..\FashionStoreSystem.Infrastructure\FashionStoreSystem.Infrastructure.csproj" />
+    <ProjectReference Include="..\FashionStoreSystem.Services.Data.Models\FashionStoreSystem.Services.Data.Models.csproj" />
+    <ProjectReference Include="..\FashionStoreSystem.Services.Data\FashionStoreSystem.Services.Data.csproj" />
+  </ItemGroup>
+
+</Project>
