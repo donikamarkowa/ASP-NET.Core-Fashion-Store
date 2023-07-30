@@ -1,7 +1,14 @@
-﻿@using Microsoft.AspNetCore.Identity
+﻿@using FashionStoreSystem.Services.Data.Interfaces;
+@using Microsoft.AspNetCore.Identity
 @using FashionStoreSystem.Data.Models
+@using FashionStoreSystem.Infrastructure.Extensions;
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+
+@inject ISellerService SellerService
+@{
+    bool isUserSeller = await this.SellerService.SellerExistsByUserIdAsync(this.User.GetId());
+}
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
@@ -9,9 +16,12 @@
     <li class="nav-item">
         <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello, @User.Identity?.Name!</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="" asp-controller="Seller" asp-action="Become">Become Seller</a>
-    </li>
+    @if (!isUserSeller)
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Seller" asp-action="Become">Become Seller</a>
+        </li>
+    }
     <li class="nav-item">
         <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
             <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>

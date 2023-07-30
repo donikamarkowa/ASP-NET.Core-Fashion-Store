@@ -232,6 +232,16 @@ namespace FashionStoreSystem.Services.Data
             };
         }
 
+        public async Task<bool> IsBoughtByUserIdAsync(string productId, string userId)
+        {
+            bool result = await this.dbContext
+                .Purchases
+                .AnyAsync(p => p.ProductId.ToString() == productId
+                          && p.UserId.ToString() == userId);
+
+            return result;
+        }
+
         public async Task<bool> IsSellerWithIdOwnerOfProductWithIdAsync(string productId, string sellerId)
         {
             Product product = await this.dbContext

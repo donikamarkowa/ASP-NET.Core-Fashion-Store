@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using FashionStoreSystem.Infrastructure.Extensions;
 using FashionStoreSystem.Infrastructure.ModelBinders;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FashionStoreSystem.Web
 {
@@ -35,6 +36,7 @@ namespace FashionStoreSystem.Web
                 .AddMvcOptions(options =>
                 {
                     options.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
+                    options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();   
                 });
 
             var app = builder.Build();
@@ -60,7 +62,9 @@ namespace FashionStoreSystem.Web
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.MapDefaultControllerRoute();
+            app.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
 
             app.Run();

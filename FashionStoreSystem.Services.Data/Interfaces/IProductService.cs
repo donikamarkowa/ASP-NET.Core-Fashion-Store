@@ -29,5 +29,8 @@ namespace FashionStoreSystem.Services.Data.Interfaces
         Task<ProductPreDeleteDetailsViewModel> GetProductForDeleteByIdAsync(string productId);
 
         Task DeleteProductByIdAsync(string productId);
+
+        Task<bool> IsBoughtByUserIdAsync(string productId, string userId);
+
     }
 }

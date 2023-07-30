@@ -46,6 +46,22 @@ namespace FashionStoreSystem.Services.Data
             return seller.Id.ToString();
         }
 
+        public async Task<bool> HasProductByIdAsync(string userId, string productId)
+        {
+            Seller? seller = await this.dbContext
+                .Sellers
+                .Include(s => s.Products)
+                .FirstOrDefaultAsync(s => s.UserId.ToString() == userId);
+
+            if (seller == null)
+            {
+                return false;
+            }
+
+            productId = productId.ToLower();
+            return seller.Products.Any(p => p.Id.ToString() == productId);
+        }
+
         public async Task<bool> SellerExistsByPhoneNumberAsync(string phoneNumber)
         {
             bool result = await this.dbContext

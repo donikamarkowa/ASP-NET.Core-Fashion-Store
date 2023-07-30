@@ -1,4 +1,14 @@
-﻿@model ProductAllViewModel
+﻿@using FashionStoreSystem.Services.Data.Interfaces;
+@using FashionStoreSystem.Infrastructure.Extensions
+@model ProductAllViewModel
+
+@inject ISellerService SellerService
+@inject IProductService ProductService
+@{
+    bool isUserSeller = await this.SellerService.SellerExistsByUserIdAsync(this.User.GetId());
+    bool isUserSellerOfTheProduct = await this.SellerService.HasProductByIdAsync(this.User.GetId(), Model.Id);
+    bool isProductBoughtByUser = await this.ProductService.IsBoughtByUserIdAsync(Model.Id, this.User.GetId());
+}
 
 <div class="col-md-4">
     <div class="card mb-3">
@@ -13,12 +23,27 @@
             <br />
             <a asp-controller="Product" asp-action="Details" asp-route-id="@Model.Id"
                class="btn btn-primary">Details</a>
-            <form class="ml-2" asp-controller="Favorite" asp-action="AddToFavorite" asp-route-id="@Model.Id" method="post">
-                <input class="btn btn-secondary" type="submit" value="Add To Favorite" />
-            </form>
-            <form class="ml-2" asp-controller="Product" asp-action="Buy" asp-route-id="@Model.Id" method="get">
-                <input class="btn btn-dark" type="submit" value="Buy" />
-            </form>
+            @if (this.User.Identity?.IsAuthenticated ?? false)
+            {
+                @if (isUserSeller && isUserSellerOfTheProduct)
+                {
+                    <a asp-controller="Product" asp-action="Edit" asp-route-id="@Model.Id"
+                       class="btn btn-secondary">Edit</a>
+                    <a asp-controller="Product" asp-action="Delete" asp-route-id="@Model.Id"
+                       class="btn btn-dark">Delete</a>
+                }
+
+                @if (!isUserSeller && !isProductBoughtByUser)
+                {
+                    <form style="margin-top: 10px; margin-bottom: 10px;" asp-controller="Favorite" asp-action="AddToFavorite" asp-route-id="@Model.Id" method="post">
+                        <input class="btn btn-secondary" type="submit" value="Add To Favorite" />
+                    </form>
+                    <form style="margin-top: 10px; margin-bottom: 10px;" asp-controller="Product" asp-action="Buy" asp-route-id="@Model.Id" method="get">
+                        <input class="btn btn-dark" type="submit" value="Buy" />
+                    </form>
+                }
+            }
+
         </div>
     </div>
 </div>

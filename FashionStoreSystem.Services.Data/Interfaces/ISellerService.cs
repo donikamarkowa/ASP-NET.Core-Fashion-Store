@@ -11,6 +11,9 @@ namespace FashionStoreSystem.Services.Data.Interfaces
         Task<bool> SelllerHasProductsByUserIdAsync(string userId);
 
         Task Create(string userId, BecomeSellerFormModel model);
+
         Task<string?> GetSellerIdByUserIdAsync(string userId);
+
+        Task<bool> HasProductByIdAsync(string userId, string productId);
     }
 }
