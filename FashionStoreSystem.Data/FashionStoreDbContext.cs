@@ -15,6 +15,16 @@ namespace FashionStoreSystem.Web.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder
+                .Entity<ApplicationUser>()
+                .Property(au => au.FirstName)
+                .HasDefaultValue("Test");
+
+            builder
+                .Entity<ApplicationUser>()
+                .Property(au => au.LastName)
+                .HasDefaultValue("Testov");
+
+            builder
                 .Entity<Product>()
                 .Property(p => p.IsActive)
                 .HasDefaultValue(true);
@@ -104,6 +114,11 @@ namespace FashionStoreSystem.Web.Data
                 {
                     Id = 7,
                     Name = "Shoes"
+                },
+                new Category()
+                {
+                    Id = 8,
+                    Name = "Swimsuit"
                 });
 
             builder.Entity<Product>()

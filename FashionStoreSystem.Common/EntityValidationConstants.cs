@@ -47,6 +47,12 @@ namespace FashionStoreSystem.Common
 
         public static class User
         {
+            public const int FirstNameMinLength = 2;
+            public const int FirstNameMaxLength = 50;
+
+            public const int LastNameMinLength = 2;
+            public const int LastNameMaxLength = 50;
+
             public const string WalletMinLength = "5";
             public const string WalletMaxLength = "500";
         }

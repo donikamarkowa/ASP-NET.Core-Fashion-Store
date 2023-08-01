@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using static FashionStoreSystem.Common.EntityValidationConstants.User;
 
 namespace FashionStoreSystem.Data.Models
 {
@@ -14,6 +15,15 @@ namespace FashionStoreSystem.Data.Models
         {
             this.Id = Guid.NewGuid();
         }
+
+        [Required]
+        [MaxLength(FirstNameMaxLength)]
+        public string FirstName { get; set; } = null!;
+
+        [Required]
+        [MaxLength(LastNameMaxLength)]
+        public string LastName { get; set; } = null!;
+
         public decimal Wallet { get; set; }
 
         [InverseProperty(nameof(Purchase.User))]
