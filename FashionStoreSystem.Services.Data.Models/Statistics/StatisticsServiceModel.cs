@@ -9,5 +9,7 @@
         public int TotalJeans { get; set; }
         public int TotalAccessories { get; set; }
         public int TotalShoes { get; set; }
+        public int TotalSwimsuits { get; set; }
+
     }
 }

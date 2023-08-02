@@ -22,7 +22,8 @@ namespace FashionStoreSystem.Services.Data
                 TotalJackets = await this.dbContext.Categories.CountAsync(c => c.Name == "Jackets"),
                 TotalJeans = await this.dbContext.Categories.CountAsync(c => c.Name == "Jeans"),
                 TotalAccessories = await this.dbContext.Categories.CountAsync(c => c.Name == "Accessories"),
-                TotalShoes = await this.dbContext.Categories.CountAsync(c => c.Name == "Shoes")
+                TotalShoes = await this.dbContext.Categories.CountAsync(c => c.Name == "Shoes"),
+                TotalSwimsuits = await this.dbContext.Categories.CountAsync(c => c.Name == "Swimsuit")
             };
         }
     }
