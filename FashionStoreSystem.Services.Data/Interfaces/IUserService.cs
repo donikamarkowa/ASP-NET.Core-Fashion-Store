@@ -16,5 +16,7 @@ namespace FashionStoreSystem.Services.Data.Interfaces
 
         Task UserBuyProductAsync(string productId, string userId);
 
+        Task<string> GetFullNameByEmailAsync(string email);
+
     }
 }

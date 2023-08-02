@@ -2,19 +2,22 @@
 @using Microsoft.AspNetCore.Identity
 @using FashionStoreSystem.Data.Models
 @using FashionStoreSystem.Infrastructure.Extensions;
+
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+@inject IUserService UserService
 
 @inject ISellerService SellerService
 @{
     bool isUserSeller = await this.SellerService.SellerExistsByUserIdAsync(this.User.GetId());
+    string userFullName = await this.UserService.GetFullNameByEmailAsync(User.Identity?.Name!);
 }
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
     <li class="nav-item">
-        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello, @User.Identity?.Name!</a>
+        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello, @userFullName)</a>
     </li>
     @if (!isUserSeller)
     {

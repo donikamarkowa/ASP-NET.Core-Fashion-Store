@@ -25,6 +25,20 @@ namespace FashionStoreSystem.Services.Data
             await this.dbContext.SaveChangesAsync();
         }
 
+        public async Task<string> GetFullNameByEmailAsync(string email)
+        {
+            ApplicationUser? user = await this.dbContext
+                .Users
+                .FirstOrDefaultAsync(u => u.Email == email);
+
+            if (user == null)
+            {
+                return string.Empty;
+            }
+
+            return $"{user.FirstName} {user.LastName}";
+        }
+
         public async Task<decimal> GetWalletBalanceByUserIdAsync(string userId)
         {
             var userWallet = await this.dbContext
