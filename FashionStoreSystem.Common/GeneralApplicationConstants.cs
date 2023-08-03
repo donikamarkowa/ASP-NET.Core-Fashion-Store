@@ -6,5 +6,8 @@
             
         public const int DefaultPage = 1;
         public const int EntitesPerPage = 3;
+
+        public const string AdminRoleName = "Administrator";
+        public const string DevelopmentAdminEmail = "petyaAdmin5@fashionstore.com";
     }
 }

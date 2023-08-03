@@ -1,13 +1,12 @@
 using FashionStoreSystem.Data.Models;
-using FashionStoreSystem.Services.Data;
 using FashionStoreSystem.Services.Data.Interfaces;
 using FashionStoreSystem.Web.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection;
 using FashionStoreSystem.Infrastructure.Extensions;
 using FashionStoreSystem.Infrastructure.ModelBinders;
 using Microsoft.AspNetCore.Mvc;
+using static FashionStoreSystem.Common.GeneralApplicationConstants;
 
 namespace FashionStoreSystem.Web
 {
@@ -28,7 +27,8 @@ namespace FashionStoreSystem.Web
                 options.SignIn.RequireConfirmedAccount = false;
                 options.Password.RequireNonAlphanumeric = false;
             })
-                .AddEntityFrameworkStores<FashionStoreDbContext>();
+            .AddRoles<IdentityRole<Guid>>()
+            .AddEntityFrameworkStores<FashionStoreDbContext>();
 
             builder.Services.AddApplicationServices(typeof(IProductService));
 
@@ -61,6 +61,8 @@ namespace FashionStoreSystem.Web
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.SeedAdministrator(DevelopmentAdminEmail);
 
             app.MapControllerRoute(
                 name: "default",
