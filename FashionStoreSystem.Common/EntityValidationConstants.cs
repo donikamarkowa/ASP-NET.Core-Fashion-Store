@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace FashionStoreSystem.Common
+﻿namespace FashionStoreSystem.Common
 {
     public class EntityValidationConstants
     {

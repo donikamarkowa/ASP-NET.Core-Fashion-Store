@@ -4,7 +4,6 @@ using FashionStoreSystem.Services.Data.Interfaces;
 using FashionStoreSystem.Web.ViewModels.Favorite;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Globalization;
 using static FashionStoreSystem.Common.NotificationMessagesConstants;
 
 namespace FashionStoreSystem.Web.Controllers

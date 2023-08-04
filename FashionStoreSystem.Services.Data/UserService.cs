@@ -2,7 +2,6 @@
 using FashionStoreSystem.Services.Data.Interfaces;
 using FashionStoreSystem.Web.Data;
 using Microsoft.EntityFrameworkCore;
-using System.Diagnostics;
 
 namespace FashionStoreSystem.Services.Data
 {

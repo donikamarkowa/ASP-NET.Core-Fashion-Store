@@ -1,7 +1,6 @@
 ﻿using FashionStoreSystem.Services.Data.Interfaces;
 using FashionStoreSystem.Web.ViewModels.Home;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 
 namespace FashionStoreSystem.Web.Controllers
 {
