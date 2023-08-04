@@ -1,4 +1,14 @@
-﻿@model ProductDetailsViewModel
+﻿@using FashionStoreSystem.Services.Data.Interfaces;
+@using FashionStoreSystem.Infrastructure.Extensions;
+@model ProductDetailsViewModel
+
+@inject IProductService ProductService
+@inject ISellerService SellerService
+@{
+    bool isUserSeller = await this.SellerService.SellerExistsByUserIdAsync(this.User.GetId());
+    bool isProductBoughtByUser = await this.ProductService.IsBoughtByUserIdAsync(this.Model.Id, this.User.GetId());
+    bool isUserSellerOfProduct = await this.SellerService.HasProductByIdAsync(this.User.GetId(), this.Model.Id);
+}
 
 @{
     ViewBag.Title = "Product Details";
@@ -25,8 +35,22 @@
             <div class="form-inline">
                 @if (this.User.Identity?.IsAuthenticated ?? false)
                 {
-                    <a class="btn btn-primary" asp-controller="Product" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
-                    <a class="ml-2 btn btn-info" asp-controller="Product" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+                    @if ((isUserSeller && isUserSellerOfProduct) || this.User.isAdmin())
+                    {
+                        <a class="btn btn-primary" asp-controller="Product" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+                        <a class="ml-2 btn btn-info" asp-controller="Product" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+                    }
+
+                    @if((!isUserSeller || !this.User.isAdmin()) && !isProductBoughtByUser)
+                    {
+                        <form style="margin-top: 10px; margin-bottom: 10px;" asp-controller="Favorite" asp-action="AddToFavorite" asp-route-id="@Model.Id" method="post">
+                            <input class="btn btn-secondary" type="submit" value="Add To Favorite" />
+                        </form>
+                        <form style="margin-top: 10px; margin-bottom: 10px;" asp-controller="Product" asp-action="Buy" asp-route-id="@Model.Id" method="get">
+                            <input class="btn btn-dark" type="submit" value="Buy" />
+                        </form>
+                    }
+
                 }
             </div>
             <p></p>
@@ -37,7 +61,7 @@
                     <div class="text-center">
                         <i class="fas fa-user-circle fa-4x text-primary"></i>
                     </div>
-                    <p class="card-text mt-3"><i class="fas fa-user"></i>First Name:@Model.Seller.FirstName</p>
+                    <p class="card-text mt-3"><i class="fas fa-user"></i>First Name: @Model.Seller.FirstName</p>
                     <p class="card-text"><i class="fas fa-user"></i> Last Name: @Model.Seller.LastName</p>
                     <p class="card-text"><i class="fas fa-envelope"></i> Email: @Model.Seller.Email</p>
                     <p class="card-text"><i class="fas fa-phone"></i> Phone Number: @Model.Seller.PhoneNumber</p>

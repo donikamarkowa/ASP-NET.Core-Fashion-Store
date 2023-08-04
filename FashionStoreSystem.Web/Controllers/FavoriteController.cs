@@ -51,7 +51,7 @@ namespace FashionStoreSystem.Web.Controllers
             bool isUserSeller = await this.sellerService
                 .SellerExistsByUserIdAsync(this.User.GetId());
 
-            if (isUserSeller)
+            if (isUserSeller && !this.User.isAdmin())
             {
                 this.TempData[ErrorMessage] = "Seller can't add products to favorite! Please register as a user!";
 
@@ -98,7 +98,7 @@ namespace FashionStoreSystem.Web.Controllers
             bool isUserSeller = await this.sellerService
                 .SellerExistsByUserIdAsync(this.User.GetId());
 
-            if (isUserSeller)
+            if (isUserSeller && !this.User.isAdmin())
             {
                 this.TempData[ErrorMessage] = "Sellers can't remove favorite products! Please register as a user!";
 
@@ -126,7 +126,7 @@ namespace FashionStoreSystem.Web.Controllers
             bool isUserSeller = await this.sellerService
                 .SellerExistsByUserIdAsync(this.User.GetId());
 
-            if (isUserSeller)
+            if (isUserSeller && !this.User.isAdmin())
             {
                 this.TempData[ErrorMessage] = "Seller don't have favorite products! Please register as a user!";
 
@@ -153,7 +153,7 @@ namespace FashionStoreSystem.Web.Controllers
             bool isUserSeller = await this.sellerService
                 .SellerExistsByUserIdAsync(this.User.GetId());
 
-            if (isUserSeller)
+            if (isUserSeller && !this.User.isAdmin())
             {
                 this.TempData[ErrorMessage] = "Seller can't buy products! Please register as a user!";
 
@@ -180,6 +180,7 @@ namespace FashionStoreSystem.Web.Controllers
             }
 
             bool isProductInFavorite = await this.userService.IsProductInUserFavoriteAsync(id, this.User.GetId());
+
             if (isProductInFavorite)
             {
                 await this.favoriteService.RemoveFromFavoriteAsync(id, this.User.GetId());

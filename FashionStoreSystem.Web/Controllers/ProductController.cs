@@ -186,7 +186,7 @@ namespace FashionStoreSystem.Web.Controllers
             bool isUserSeller = await this.sellerService
                 .SellerExistsByUserIdAsync(this.User.GetId()!);
 
-            if (!isUserSeller)
+            if (!isUserSeller && !this.User.isAdmin())
             {
                 this.TempData[ErrorMessage] = "You must become a seller in order to edit product info!";
 
@@ -198,7 +198,7 @@ namespace FashionStoreSystem.Web.Controllers
             bool isSellerOwner = await this.productService
                 .IsSellerWithIdOwnerOfProductWithIdAsync(id, sellerId!);
 
-            if (!isSellerOwner)
+            if (!isSellerOwner && !this.User.isAdmin())
             {
                 this.TempData[ErrorMessage] = "You must be the seller owner of the product you want to edit!";
 
@@ -243,7 +243,7 @@ namespace FashionStoreSystem.Web.Controllers
             bool isUserSeller = await this.sellerService
                 .SellerExistsByUserIdAsync(this.User.GetId()!);
 
-            if (!isUserSeller)
+            if (!isUserSeller && !this.User.isAdmin())
             {
                 this.TempData[ErrorMessage] = "You must become a seller in order to edit product info!";
 
@@ -255,7 +255,7 @@ namespace FashionStoreSystem.Web.Controllers
             bool isSellerOwner = await this.productService
                 .IsSellerWithIdOwnerOfProductWithIdAsync(id, sellerId!);
 
-            if (!isSellerOwner)
+            if (!isSellerOwner && !this.User.isAdmin())
             {
                 this.TempData[ErrorMessage] = "You must be the seller owner of the product you want to edit!";
 
@@ -293,7 +293,7 @@ namespace FashionStoreSystem.Web.Controllers
             bool isUserSeller = await this.sellerService
                 .SellerExistsByUserIdAsync(this.User.GetId()!);
 
-            if (!isUserSeller)
+            if (!isUserSeller && !this.User.isAdmin())
             {
                 this.TempData[ErrorMessage] = "You must become a seller in order to edit product info!";
 
@@ -305,7 +305,7 @@ namespace FashionStoreSystem.Web.Controllers
             bool isSellerOwner = await this.productService
                 .IsSellerWithIdOwnerOfProductWithIdAsync(id, sellerId!);
 
-            if (!isSellerOwner)
+            if (!isSellerOwner && !this.User.isAdmin())
             {
                 this.TempData[ErrorMessage] = "You must be the seller owner of the product you want to edit!";
 
@@ -341,7 +341,7 @@ namespace FashionStoreSystem.Web.Controllers
             bool isUserSeller = await this.sellerService
                 .SellerExistsByUserIdAsync(this.User.GetId()!);
 
-            if (!isUserSeller)
+            if (!isUserSeller && !this.User.isAdmin())
             {
                 this.TempData[ErrorMessage] = "You must become a seller in order to edit product info!";
 
@@ -353,7 +353,7 @@ namespace FashionStoreSystem.Web.Controllers
             bool isSellerOwner = await this.productService
                 .IsSellerWithIdOwnerOfProductWithIdAsync(id, sellerId!);
 
-            if (!isSellerOwner)
+            if (!isSellerOwner && !this.User.isAdmin())
             {
                 this.TempData[ErrorMessage] = "You must be the seller owner of the product you want to edit!";
 

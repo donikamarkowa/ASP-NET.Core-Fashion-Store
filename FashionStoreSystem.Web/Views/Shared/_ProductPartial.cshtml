@@ -25,7 +25,7 @@
                class="btn btn-primary">Details</a>
             @if (this.User.Identity?.IsAuthenticated ?? false)
             {
-                @if (isUserSeller && isUserSellerOfTheProduct)
+                @if ((isUserSeller && isUserSellerOfTheProduct) || this.User.isAdmin())
                 {
                     <a asp-controller="Product" asp-action="Edit" asp-route-id="@Model.Id"
                        class="btn btn-secondary">Edit</a>
@@ -33,7 +33,7 @@
                        class="btn btn-dark">Delete</a>
                 }
 
-                @if (!isUserSeller && !isProductBoughtByUser)
+                @if ((!isUserSeller || !this.User.isAdmin()) && !isProductBoughtByUser)
                 {
                     <form style="margin-top: 10px; margin-bottom: 10px;" asp-controller="Favorite" asp-action="AddToFavorite" asp-route-id="@Model.Id" method="post">
                         <input class="btn btn-secondary" type="submit" value="Add To Favorite" />

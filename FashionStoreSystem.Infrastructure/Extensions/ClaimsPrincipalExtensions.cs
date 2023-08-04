@@ -1,5 +1,5 @@
-﻿using System.Runtime.CompilerServices;
-using System.Security.Claims;
+﻿using System.Security.Claims;
+using static FashionStoreSystem.Common.GeneralApplicationConstants;
 
 namespace FashionStoreSystem.Infrastructure.Extensions
 {
@@ -8,6 +8,11 @@ namespace FashionStoreSystem.Infrastructure.Extensions
         public static string GetId(this ClaimsPrincipal user)
         {
             return user.FindFirstValue(ClaimTypes.NameIdentifier);
+        }
+
+        public static bool isAdmin(this ClaimsPrincipal user)
+        {
+            return user.IsInRole(AdminRoleName);
         }
     }
 }
