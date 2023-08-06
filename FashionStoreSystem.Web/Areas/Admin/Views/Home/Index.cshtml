@@ -61,8 +61,8 @@
                 <div class="card-body">
                     <h2 class="card-title">Products</h2>
                     <p class="card-text">Add, delete, and edit products.</p>
-                    <a href="#" class="btn btn-light">View All</a>
-                    <a href="#" class="btn btn-light">Add New</a>
+                    <a asp-area="" asp-controller="Product" asp-action="All" class="btn btn-light">View All</a>
+                    <a asp-area="" asp-controller="Product" asp-action="Add" class="btn btn-light">Add New</a>
                 </div>
             </div>
         </div>
@@ -72,7 +72,7 @@
                 <div class="card-body">
                     <h2 class="card-title">Users</h2>
                     <p class="card-text">Manage all users and sellers.</p>
-                    <a href="#" class="btn btn-light">View All</a>
+                    <a asp-area="Admin" asp-controller="User" asp-action="All" class="btn btn-light">View All</a>
                 </div>
             </div>
         </div>
@@ -82,7 +82,7 @@
                 <div class="card-body">
                     <h2 class="card-title">Purchases</h2>
                     <p class="card-text">Explore purchased products.</p>
-                    <a href="#" class="btn btn-light">View All</a>
+                    <a asp-area="Admin" asp-controller="Buy" asp-action="All" class="btn btn-light">View All</a>
                 </div>
             </div>
         </div>
