@@ -45,6 +45,10 @@
         .card:hover {
             transform: scale(1.05);
         }
+
+    .btn-group .btn {
+        margin-right: 5px;
+    }
 </style>
 
 <div class="container text-center my-5">
@@ -61,8 +65,11 @@
                 <div class="card-body">
                     <h2 class="card-title">Products</h2>
                     <p class="card-text">Add, delete, and edit products.</p>
-                    <a asp-area="" asp-controller="Product" asp-action="All" class="btn btn-light">View All</a>
-                    <a asp-area="" asp-controller="Product" asp-action="Add" class="btn btn-light">Add New</a>
+                    <div class="btn-group" role="group">
+                        <a asp-area="" asp-controller="Product" asp-action="All" class="btn btn-light">View All</a>
+                        <a asp-area="" asp-controller="Product" asp-action="Add" class="btn btn-light">Add New</a>
+                        <a asp-area="Admin" asp-controller="Product" asp-action="Mine" class="btn btn-light">My Products</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -72,7 +79,10 @@
                 <div class="card-body">
                     <h2 class="card-title">Users</h2>
                     <p class="card-text">Manage all users and sellers.</p>
-                    <a asp-area="Admin" asp-controller="User" asp-action="All" class="btn btn-light">View All</a>
+                    <div class="btn-group" role="group">
+                        <a asp-area="Admin" asp-controller="User" asp-action="All" class="btn btn-light">View All</a>
+                        <a asp-area="Admin" asp-controller="Product" asp-action="Mine" class="btn btn-light">My Products</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -82,7 +92,10 @@
                 <div class="card-body">
                     <h2 class="card-title">Purchases</h2>
                     <p class="card-text">Explore purchased products.</p>
-                    <a asp-area="Admin" asp-controller="Buy" asp-action="All" class="btn btn-light">View All</a>
+                    <div class="btn-group" role="group">
+                        <a asp-area="Admin" asp-controller="Buy" asp-action="All" class="btn btn-light">View All</a>
+                        <a asp-area="Admin" asp-controller="Product" asp-action="Mine" class="btn btn-light">My Products</a>
+                    </div>
                 </div>
             </div>
         </div>

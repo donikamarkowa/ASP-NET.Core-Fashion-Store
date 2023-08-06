@@ -29,8 +29,4 @@
     <ProjectReference Include="..\FashionStoreSystem.Web.ViewModels\FashionStoreSystem.Web.ViewModels.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Areas\Admin\ViewModels\" />
-  </ItemGroup>
-
 </Project>

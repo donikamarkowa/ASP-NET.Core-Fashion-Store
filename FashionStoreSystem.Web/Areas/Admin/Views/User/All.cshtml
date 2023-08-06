@@ -1,0 +1,70 @@
+﻿@model IEnumerable<UserViewModel>
+
+@{
+    ViewBag.Title = "All Users";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+@*<table class="table table-striped text-white">
+    <thead>
+        <tr>
+            <th><label>Email</label></th>
+            <th><label>Full Name</label></th>
+            <th><label>Phone Number</label></th>
+            <th><label>User Is Seller</label></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td class="text-black"><label>@user.Email</label></td>
+                <td class="text-black"><label>@user.FullName</label></td>
+                <td class="text-black"><label>@user.PhoneNumber</label></td>
+                <td class="text-black">
+                    @if (user.PhoneNumber != string.Empty)
+                    {
+                        <label>✔</label>
+                    }
+                    else
+                    {
+                        <label class="text-center">❌</label>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>*@
+
+<table class="table table-striped table-bordered table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>Email</th>
+            <th>Full Name</th>
+            <th>Phone Number</th>
+            <th>User Is Seller</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Email</td>
+                <td>@user.FullName</td>
+                <td>@user.PhoneNumber</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(user.PhoneNumber))
+                    {
+                        <span class="badge badge-success">✔</span>
+                    }
+                    else
+                    {
+                        <span class="badge badge-danger">❌</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

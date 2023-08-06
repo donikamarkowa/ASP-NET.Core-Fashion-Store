@@ -1,15 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
-using static FashionStoreSystem.Common.EntityValidationConstants.User;
-
-namespace FashionStoreSystem.Web.ViewModels.User
+﻿namespace FashionStoreSystem.Web.ViewModels.User
 {
     public class UserViewModel
     {
         public string Id { get; set; } = null!;
-
-        [Display(Name = "My Money")]
-
-        [Range(typeof(decimal), WalletMinLength, WalletMaxLength)]
-        public decimal Wallet { get; set; }
+        public string Email { get; set; } = null!;
+        public string FullName { get; set; } = null!;
+        public string PhoneNumber { get; set; } = null!;
     }
 }

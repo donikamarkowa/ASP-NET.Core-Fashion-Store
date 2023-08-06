@@ -33,7 +33,7 @@ namespace FashionStoreSystem.Web.Controllers
 
             decimal currentWalletBalance = await this.userService.GetWalletBalanceByUserIdAsync(userId);
 
-            var userViewModel = new UserViewModel
+            var userViewModel = new UserWalletViewModel
             {
                 Id = userId,
                 Wallet = currentWalletBalance
@@ -43,7 +43,7 @@ namespace FashionStoreSystem.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(UserViewModel model)
+        public async Task<IActionResult> Add(UserWalletViewModel model)
         {
             string userId = this.User.GetId();
             bool userExists = await this.userService.UserExistsByIdAsync(userId);

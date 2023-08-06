@@ -1,4 +1,5 @@
 ﻿using FashionStoreSystem.Data.Models;
+using FashionStoreSystem.Web.ViewModels.User;
 
 namespace FashionStoreSystem.Services.Data.Interfaces
 {
@@ -17,6 +18,10 @@ namespace FashionStoreSystem.Services.Data.Interfaces
         Task UserBuyProductAsync(string productId, string userId);
 
         Task<string> GetFullNameByEmailAsync(string email);
+        
+        Task<string> GetFullNameByIdAsync(string userId);
+
+        Task<IEnumerable<UserViewModel>> AllAsync();
 
     }
 }

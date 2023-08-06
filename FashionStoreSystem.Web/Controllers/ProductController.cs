@@ -4,6 +4,8 @@ using FashionStoreSystem.Services.Data.Models.Product;
 using FashionStoreSystem.Web.ViewModels.Product;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+
+using static FashionStoreSystem.Common.GeneralApplicationConstants;
 using static FashionStoreSystem.Common.NotificationMessagesConstants;
 
 namespace FashionStoreSystem.Web.Controllers
@@ -115,6 +117,11 @@ namespace FashionStoreSystem.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Mine()
         {
+            if (this.User.IsInRole(AdminRoleName))
+            {
+                return this.RedirectToAction("Mine", "Product", new { Area = AdminAreaName});
+            }
+
             List<ProductAllViewModel> myProducts = 
                 new List<ProductAllViewModel>(); 
 

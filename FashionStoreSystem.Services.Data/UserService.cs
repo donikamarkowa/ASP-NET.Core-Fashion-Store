@@ -1,6 +1,7 @@
 ﻿using FashionStoreSystem.Data.Models;
 using FashionStoreSystem.Services.Data.Interfaces;
 using FashionStoreSystem.Web.Data;
+using FashionStoreSystem.Web.ViewModels.User;
 using Microsoft.EntityFrameworkCore;
 
 namespace FashionStoreSystem.Services.Data
@@ -24,11 +25,56 @@ namespace FashionStoreSystem.Services.Data
             await this.dbContext.SaveChangesAsync();
         }
 
+        public async Task<IEnumerable<UserViewModel>> AllAsync()
+        {
+            ICollection<UserViewModel> allUsers = await this.dbContext
+                .Users
+                .Select(u => new UserViewModel()
+                {
+                    Id = u.Id.ToString(),
+                    FullName = u.FirstName + " " + u.LastName,
+                    Email = u.Email
+                })
+                .ToListAsync();
+
+            foreach (UserViewModel u in allUsers)
+            {
+                Seller? seller = await this.dbContext
+                    .Sellers
+                    .FirstOrDefaultAsync(s => s.UserId.ToString() == u.Id);
+
+                if (seller == null)
+                {
+                    u.PhoneNumber = string.Empty;
+                }
+                else
+                {
+                    u.PhoneNumber = seller.PhoneNumber;
+                }
+            }
+
+            return allUsers;
+        }
+
         public async Task<string> GetFullNameByEmailAsync(string email)
         {
             ApplicationUser? user = await this.dbContext
                 .Users
                 .FirstOrDefaultAsync(u => u.Email == email);
+
+            if (user == null)
+            {
+                return string.Empty;
+            }
+
+            return $"{user.FirstName} {user.LastName}";
+        }
+
+        public async Task<string> GetFullNameByIdAsync(string userId)
+        {
+            ApplicationUser? user = await this.dbContext
+                .Users
+                .FirstOrDefaultAsync(u => u.Id.ToString() == userId);
 
             if (user == null)
             {

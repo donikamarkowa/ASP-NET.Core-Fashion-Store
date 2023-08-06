@@ -21,24 +21,24 @@
                 <b>@($"{Model.Price:f2}") BGN</b>
             </h6>
             <br />
-            <a asp-controller="Product" asp-action="Details" asp-route-id="@Model.Id"
+            <a asp-area="" asp-controller="Product" asp-action="Details" asp-route-id="@Model.Id"
                class="btn btn-primary">Details</a>
             @if (this.User.Identity?.IsAuthenticated ?? false)
             {
                 @if ((isUserSeller && isUserSellerOfTheProduct) || this.User.isAdmin())
                 {
-                    <a asp-controller="Product" asp-action="Edit" asp-route-id="@Model.Id"
+                    <a asp-area="" asp-controller="Product" asp-action="Edit" asp-route-id="@Model.Id"
                        class="btn btn-secondary">Edit</a>
-                    <a asp-controller="Product" asp-action="Delete" asp-route-id="@Model.Id"
+                    <a asp-area="" asp-controller="Product" asp-action="Delete" asp-route-id="@Model.Id"
                        class="btn btn-dark">Delete</a>
                 }
 
                 @if ((!isUserSeller || !this.User.isAdmin()) && !isProductBoughtByUser)
                 {
-                    <form style="margin-top: 10px; margin-bottom: 10px;" asp-controller="Favorite" asp-action="AddToFavorite" asp-route-id="@Model.Id" method="post">
+                    <form style="margin-top: 10px; margin-bottom: 10px;" asp-area="" asp-controller="Favorite" asp-action="AddToFavorite" asp-route-id="@Model.Id" method="post">
                         <input class="btn btn-secondary" type="submit" value="Add To Favorite" />
                     </form>
-                    <form style="margin-top: 10px; margin-bottom: 10px;" asp-controller="Product" asp-action="Buy" asp-route-id="@Model.Id" method="get">
+                    <form style="margin-top: 10px; margin-bottom: 10px;" asp-area="" asp-controller="Product" asp-action="Buy" asp-route-id="@Model.Id" method="get">
                         <input class="btn btn-dark" type="submit" value="Buy" />
                     </form>
                 }
