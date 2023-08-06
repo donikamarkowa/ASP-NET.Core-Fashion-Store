@@ -11,6 +11,8 @@ namespace FashionStoreSystem.Web.Areas.Admin.Controllers
         {
             this.userService = userService;
         }
+
+        [Route("User/All")]
         public async Task<IActionResult> All()
         {
             IEnumerable<UserViewModel> viewModel = await this.userService
