@@ -1,0 +1,90 @@
+﻿@*﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="mt-4 p-5 bg-light text-center">
+    <h2 class="display-4">Hello, Admin!</h2>
+    <p class="lead mb-1 mt-3">
+        This is your administrator area - you can <b>add</b>,
+        <b>delete</b> and <b>edit</b> products.
+    </p>
+    <p class="lead mt-1">
+        You can also see <b>all users and sellers</b> and <b>all purchased products</b> in the system.
+    </p>
+    <hr class="my-4">
+    <a asp-area="" asp-controller="Product" asp-action="All"
+       class="btn btn-primary btn-lg">All Products</a>
+    <a asp-area="" asp-controller="Product" asp-action="Add"
+       class="btn btn-primary btn-lg">Add Product</a>
+    <span>  |   </span>
+    <a asp-area="Admin" asp-controller="Product" asp-action="Mine"
+       class="btn btn-primary btn-lg">My Products</a>
+    <span>  |   </span>
+    <a asp-area="Admin" asp-controller="Buy" asp-action="All"
+       class="btn btn-primary btn-lg">All Purchased Products</a>
+    <a asp-area="Admin" asp-controller="User" asp-action="All"
+       class="btn btn-primary btn-lg">All Users</a>
+</div>*@
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    .jumbotron {
+        background-color: #f8f9fa;
+        border-radius: 10px;
+    }
+
+    .card {
+        border: none;
+        border-radius: 10px;
+        transition: transform 0.2s;
+    }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+</style>
+
+<div class="container text-center my-5">
+    <div class="jumbotron p-4">
+        <h1 class="display-4">Welcome, Admin!</h1>
+        <p class="lead">
+            Manage products, users, and purchases effortlessly.
+        </p>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-4 mb-4">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <h2 class="card-title">Products</h2>
+                    <p class="card-text">Add, delete, and edit products.</p>
+                    <a href="#" class="btn btn-light">View All</a>
+                    <a href="#" class="btn btn-light">Add New</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <h2 class="card-title">Users</h2>
+                    <p class="card-text">Manage all users and sellers.</p>
+                    <a href="#" class="btn btn-light">View All</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card bg-info text-white">
+                <div class="card-body">
+                    <h2 class="card-title">Purchases</h2>
+                    <p class="card-text">Explore purchased products.</p>
+                    <a href="#" class="btn btn-light">View All</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

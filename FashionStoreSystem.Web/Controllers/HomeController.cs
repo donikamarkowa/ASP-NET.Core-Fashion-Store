@@ -1,6 +1,7 @@
 ﻿using FashionStoreSystem.Services.Data.Interfaces;
 using FashionStoreSystem.Web.ViewModels.Home;
 using Microsoft.AspNetCore.Mvc;
+using static FashionStoreSystem.Common.GeneralApplicationConstants;
 
 namespace FashionStoreSystem.Web.Controllers
 {
@@ -14,6 +15,10 @@ namespace FashionStoreSystem.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
+            if (this.User.IsInRole(AdminRoleName))
+            {
+                return this.RedirectToAction("Index", "Home", new { Area = AdminAreaName});
+            }
             IEnumerable<IndexViewModel> viewModel = 
                 await this.productService.TopThreeCheapestProductsAsync();
 

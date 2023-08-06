@@ -64,6 +64,21 @@ namespace FashionStoreSystem.Web
 
             app.SeedAdministrator(DevelopmentAdminEmail);
 
+            app.UseEndpoints(config =>
+            {
+                config.MapControllerRoute(
+                name: "areas",
+                pattern: "/{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                );
+                config.MapControllerRoute(
+                    name: "areas",
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+                config.MapDefaultControllerRoute();
+
+                config.MapRazorPages();
+            });
+
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
