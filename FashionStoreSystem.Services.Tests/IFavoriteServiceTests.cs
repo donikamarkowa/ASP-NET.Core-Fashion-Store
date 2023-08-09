@@ -86,22 +86,5 @@ namespace FashionStoreSystem.Services.Tests
         }
     }
 }
-//public async Task<IEnumerable<FavoriteViewModel>> GetFavoriteByUserIdAsync(string userId)
-//{
-//    IEnumerable<FavoriteViewModel> allProductsInFavorite = await this.dbContext
-//        .Favorites
-//        .Include(f => f.Product)
-//        .Where(f => f.UserId.ToString() == userId)
-//        .Select(f => new FavoriteViewModel()
-//        {
-//            Id = f.Product.Id.ToString(),
-//            Name = f.Product.Name,
-//            Size = f.Product.Size,
-//            ImageUrl = f.Product.ImageUrl,
-//            Price = f.Product.Price
-//        })
-//        .ToArrayAsync();
 
-//    return allProductsInFavorite;
-//}
 
