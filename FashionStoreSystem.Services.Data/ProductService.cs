@@ -96,7 +96,7 @@ namespace FashionStoreSystem.Services.Data
 
         public async Task<IEnumerable<ProductAllViewModel>> AllByUserIdAsync(string userId)
         {
-            IEnumerable<ProductAllViewModel> allUserBooks = await this.dbContext
+            IEnumerable<ProductAllViewModel> allUserProducts = await this.dbContext
                .Purchases
                .Include(p => p.Product)
                .Where(p => p.UserId.ToString() == userId)
@@ -110,7 +110,7 @@ namespace FashionStoreSystem.Services.Data
                })
                .ToArrayAsync();
 
-            return allUserBooks;
+            return allUserProducts;
         }
 
         public async Task<string> CreateAndReturnIdAsync(ProductFormModel formModel, string sellerId)

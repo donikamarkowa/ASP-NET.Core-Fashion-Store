@@ -2,9 +2,7 @@ using FashionStoreSystem.Data.Models;
 using FashionStoreSystem.Services.Data;
 using FashionStoreSystem.Services.Data.Interfaces;
 using FashionStoreSystem.Web.Data;
-using Microsoft.AspNetCore.Routing.Constraints;
 using Microsoft.EntityFrameworkCore;
-using System.Diagnostics.Eventing.Reader;
 using static FashionStoreSystem.Services.Tests.DatabaseSeeder;
 
 namespace FashionStoreSystem.Services.Tests

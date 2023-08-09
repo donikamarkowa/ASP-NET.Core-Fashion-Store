@@ -9,6 +9,7 @@ namespace FashionStoreSystem.Services.Tests
         public static Seller Seller;
         public static Product NewProduct;
         public static ApplicationUser BuyerUser;
+        public static Purchase Purchase;
 
         public static void SeedDatabase(FashionStoreDbContext dbContext)
         {
@@ -42,7 +43,8 @@ namespace FashionStoreSystem.Services.Tests
                 Price = 80,
                 CategoryId = 7,
                 Seller = Seller,
-                Size = "38"
+                Size = "38",
+                IsActive = true
             };
             BuyerUser = new ApplicationUser()
             {
@@ -60,11 +62,18 @@ namespace FashionStoreSystem.Services.Tests
                 PhoneNumber = "+359888888888",
                 Wallet = 300
             };
+            Purchase = new Purchase()
+            {
+                User = BuyerUser,
+                Product = NewProduct
+            };
+
 
             dbContext.Users.Add(SellerUser);
             dbContext.Sellers.Add(Seller);
             dbContext.Products.Add(NewProduct);
             dbContext.Users.Add(BuyerUser);
+            dbContext.Purchases.Add(Purchase);
 
             dbContext.SaveChanges();
         }

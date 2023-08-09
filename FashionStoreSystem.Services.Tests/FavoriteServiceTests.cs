@@ -8,7 +8,7 @@ using static FashionStoreSystem.Services.Tests.DatabaseSeeder;
 
 namespace FashionStoreSystem.Services.Tests
 {
-    public class IFavoriteServiceTests
+    public class FavoriteServiceTests
     {
         private DbContextOptions<FashionStoreDbContext> dbOptions;
         private FashionStoreDbContext dbContext;
