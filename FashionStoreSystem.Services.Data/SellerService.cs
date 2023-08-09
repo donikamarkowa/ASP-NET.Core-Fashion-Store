@@ -80,7 +80,7 @@ namespace FashionStoreSystem.Services.Data
             return result;
         }
 
-        public async Task<bool> SelllerHasProductsByUserIdAsync(string userId)
+        public async Task<bool> HasProductsByUserIdAsync(string userId)
         {
             ApplicationUser? user = await this.dbContext
                 .Users

@@ -8,7 +8,7 @@ namespace FashionStoreSystem.Services.Data.Interfaces
 
         Task<bool> SellerExistsByPhoneNumberAsync(string phoneNumber);
 
-        Task<bool> SelllerHasProductsByUserIdAsync(string userId);
+        Task<bool> HasProductsByUserIdAsync(string userId);
 
         Task Create(string userId, BecomeSellerFormModel model);
 

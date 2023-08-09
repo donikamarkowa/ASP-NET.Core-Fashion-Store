@@ -57,7 +57,7 @@ namespace FashionStoreSystem.Web.Controllers
                 return this.View(model);
             }
 
-            bool userHasProducts = await this.sellerService.SelllerHasProductsByUserIdAsync(userId);
+            bool userHasProducts = await this.sellerService.HasProductsByUserIdAsync(userId);
 
             if (userHasProducts)
             {
