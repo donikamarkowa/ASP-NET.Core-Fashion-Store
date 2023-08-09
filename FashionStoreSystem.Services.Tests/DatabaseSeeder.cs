@@ -7,7 +7,7 @@ namespace FashionStoreSystem.Services.Tests
     {
         public static ApplicationUser SellerUser;
         public static Seller Seller;
-        public static Product SellersProduct;
+        public static Product NewProduct;
         public static ApplicationUser BuyerUser;
 
         public static void SeedDatabase(FashionStoreDbContext dbContext)
@@ -34,7 +34,7 @@ namespace FashionStoreSystem.Services.Tests
                 PhoneNumber = "+35989765455555",
                 User = SellerUser
             };
-            SellersProduct = new Product()
+            NewProduct = new Product()
             {
                 Name = "LADIES` SANDALS",
                 Description = "The sandals have a straight toe and an ankle fastening",
@@ -63,7 +63,7 @@ namespace FashionStoreSystem.Services.Tests
 
             dbContext.Users.Add(SellerUser);
             dbContext.Sellers.Add(Seller);
-            dbContext.Products.Add(SellersProduct);
+            dbContext.Products.Add(NewProduct);
             dbContext.Users.Add(BuyerUser);
 
             dbContext.SaveChanges();

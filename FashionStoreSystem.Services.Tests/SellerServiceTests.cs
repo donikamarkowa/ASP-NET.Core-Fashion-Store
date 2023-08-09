@@ -68,7 +68,7 @@ namespace FashionStoreSystem.Services.Tests
         public async Task HasProductByIdAsyncShouldReturnTrueWhenHasProduct()
         {
             string existingSellerId = SellerUser.Id.ToString();
-            string productId = SellersProduct.Id.ToString();
+            string productId = NewProduct.Id.ToString();
 
             bool result = await this.sellerService.HasProductByIdAsync(existingSellerId, productId);
 
