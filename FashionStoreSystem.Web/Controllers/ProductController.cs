@@ -83,8 +83,8 @@ namespace FashionStoreSystem.Web.Controllers
                 return this.RedirectToAction("Become", "Seller");
             }
 
-            bool categoriesExists = await this.categoryService.ExistsByIdAsync(model.CategoryId);
-            if (!categoriesExists) 
+            bool categoryExists = await this.categoryService.ExistsByIdAsync(model.CategoryId);
+            if (!categoryExists) 
             {
                 this.ModelState.AddModelError(nameof(model.CategoryId), "Selected category does not exist!");
             }
