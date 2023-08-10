@@ -14,13 +14,16 @@
     </div>
 }
 
-<div class="row">
+@*<div class="row">
     <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
         <form method="post">
             <div class="form-group text-white">
                 <label asp-for="PhoneNumber"></label>
                 <input asp-for="PhoneNumber" class="form-control" placeholder="+359*********">
                 <span asp-validation-for="PhoneNumber" class="small text-danger"></span>
+            </div>
+            <div class="alert alert-info" role="alert">
+                Please write the first name and the last name you registered with!
             </div>
             <div class="form-group text-white">
                 <label asp-for="FirstName"></label>
@@ -34,6 +37,39 @@
             </div>
             <div class="text-center">
                 <input class="btn btn-primary mt-3 " type="submit" value="Save" />
+            </div>
+        </form>
+    </div>
+</div>*@
+<style>
+    .custom-margin {
+        margin-bottom: 20px; /* Adjust the margin value as needed */
+    }
+</style>
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form method="post">
+            <div class="form-group text-white">
+                <label asp-for="PhoneNumber"></label>
+                <input asp-for="PhoneNumber" class="form-control" placeholder="+359*********">
+                <span asp-validation-for="PhoneNumber" class="small text-danger"></span>
+            </div>
+            <div class="form-group text-white">
+                <label asp-for="FirstName"></label>
+                <input asp-for="FirstName" class="form-control" placeholder="FirstName">
+                <span asp-validation-for="FirstName" class="small text-danger"></span>
+            </div>
+            <div class="form-group text-white custom-margin">
+                <label asp-for="LastName"></label>
+                <input asp-for="LastName" class="form-control" placeholder="LastName">
+                <span asp-validation-for="LastName" class="small text-danger"></span>
+            </div>
+            <div class="alert alert-info" role="alert">
+                Please write the first name and the last name you registered with!
+            </div>
+            <div class="text-center">
+                <input class="btn btn-primary mt-3" type="submit" value="Save" />
             </div>
         </form>
     </div>
