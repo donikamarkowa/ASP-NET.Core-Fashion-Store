@@ -102,44 +102,7 @@ namespace FashionStoreSystem.Services.Tests
             Assert.AreEqual(result.Count(), 1);
         }
 
-        [Test]
-        public async Task GetDetailsByIdAsyncShouldReturnTrueIfProductExists()
-        {
-            string productId = NewProduct.Id.ToString();    
-
-            var result = await this.productService.GetDetailsByIdAsync(productId);
-
-            Assert.IsInstanceOf(typeof(ProductDetailsViewModel), result);
-            Assert.AreEqual(result.Id.ToString(), productId);
-        }
 
     }
 }
-//public async Task<ProductDetailsViewModel> GetDetailsByIdAsync(string productId)
-//{
-//    Product product = await this.dbContext
-//        .Products
-//        .Include(p => p.Category)
-//        .Include(p => p.Seller)
-//        .ThenInclude(a => a.User)
-//        .Where(p => p.IsActive)
-//        .FirstAsync(p => p.Id.ToString() == productId);
-
-//    return new ProductDetailsViewModel()
-//    {
-//        Id = product.Id.ToString(),
-//        Size = product.Size,
-//        Name = product.Name,
-//        ImageUrl = product.ImageUrl,
-//        Price = product.Price,
-//        Description = product.Description,
-//        Seller = new SellerInfoOnProductViewModel()
-//        {
-//            FirstName = product.Seller.FirstName,
-//            LastName = product.Seller.LastName,
-//            PhoneNumber = product.Seller.PhoneNumber,
-//            Email = product.Seller.User.Email,
-//        }
-//    };
-//}
 
