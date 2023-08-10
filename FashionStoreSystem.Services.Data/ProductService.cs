@@ -189,6 +189,7 @@ namespace FashionStoreSystem.Services.Data
                 ImageUrl = product.ImageUrl,
                 Price = product.Price,
                 Description = product.Description,
+                Category = product.Category.Name,
                 Seller = new SellerInfoOnProductViewModel()
                 {
                     FirstName = product.Seller.FirstName,
