@@ -41,7 +41,7 @@
                         <a class="ml-2 btn btn-info" asp-controller="Product" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
                     }
 
-                    @if((!isUserSeller || !this.User.isAdmin()) && !isProductBoughtByUser)
+                    @if((!isUserSeller && !this.User.isAdmin()) && !isProductBoughtByUser)
                     {
                         <form style="margin-top: 10px; margin-bottom: 10px;" asp-controller="Favorite" asp-action="AddToFavorite" asp-route-id="@Model.Id" method="post">
                             <input class="btn btn-secondary" type="submit" value="Add To Favorite" />

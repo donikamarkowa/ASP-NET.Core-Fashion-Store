@@ -102,6 +102,8 @@ namespace FashionStoreSystem.Web.Controllers
                     await this.sellerService.GetSellerIdByUserIdAsync(this.User.GetId()!);
                 string productId = await this.productService.CreateAndReturnIdAsync(model, sellerId!);
 
+                this.TempData[SuccessMessage] = "Product was added successfully!";
+
                 return this.RedirectToAction("Details", "Product", new { id = productId });
             }
             catch (Exception)
@@ -272,6 +274,7 @@ namespace FashionStoreSystem.Web.Controllers
             try
             {
                 await this.productService.EditProductByIdAndFormModelAsync(id, model);
+                this.TempData[SuccessMessage] = "You successfully edit the product!";
             }
             catch (Exception)
             {
