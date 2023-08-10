@@ -124,6 +124,7 @@ namespace FashionStoreSystem.Services.Data
                 .FirstAsync(u => u.Id.ToString() == userId);
 
             user.Wallet -= product.Price;
+            product.Seller.User.Wallet += product.Price; 
 
             Purchase purchase = new Purchase()
             {
@@ -161,5 +162,7 @@ namespace FashionStoreSystem.Services.Data
 
             return false;
         }
+
+        
     }
 }

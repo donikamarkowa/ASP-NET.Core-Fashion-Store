@@ -11,10 +11,12 @@ namespace FashionStoreSystem.Web.Controllers
     public class UserController : Controller
     {
         private readonly IUserService userService;
+        private readonly ISellerService sellerService;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, ISellerService sellerService)
         {
             this.userService = userService;
+            this.sellerService = sellerService;
         }
 
 
@@ -29,6 +31,13 @@ namespace FashionStoreSystem.Web.Controllers
                 this.TempData[ErrorMessage] = "User with the provided id does not exist!";
 
                 return RedirectToAction("Index", "Home");
+            }
+
+            bool isUserSeller = await this.sellerService.SellerExistsByUserIdAsync(userId); 
+
+            if (isUserSeller)
+            {
+                this.TempData[ErrorMessage] = "Sellers can't add money to their wallet. They only get their earned money there.";
             }
 
             decimal currentWalletBalance = await this.userService.GetWalletBalanceByUserIdAsync(userId);
@@ -53,6 +62,13 @@ namespace FashionStoreSystem.Web.Controllers
                 this.TempData[ErrorMessage] = "User with the provided id does not exist!";
 
                 return RedirectToAction("Index", "Home");
+            }
+
+            bool isUserSeller = await this.sellerService.SellerExistsByUserIdAsync(userId);
+
+            if (isUserSeller)
+            {
+                this.TempData[ErrorMessage] = "Sellers can't add money to their wallet. They only get their earned money there.";
             }
 
             try

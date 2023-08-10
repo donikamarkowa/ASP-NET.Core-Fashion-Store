@@ -23,5 +23,6 @@ namespace FashionStoreSystem.Services.Data.Interfaces
 
         Task<IEnumerable<UserViewModel>> AllAsync();
 
+
     }
 }

@@ -1,4 +1,13 @@
-﻿@model UserWalletViewModel
+﻿@using FashionStoreSystem.Infrastructure.Extensions;
+@using FashionStoreSystem.Services.Data.Interfaces;
+@model UserWalletViewModel
+
+@inject IUserService UserService
+
+@inject ISellerService SellerService
+@{
+    bool isUserSeller = await this.SellerService.SellerExistsByUserIdAsync(this.User.GetId());
+}
 
 @{
     ViewBag.Title = "My Wallet";
@@ -33,8 +42,29 @@
         </div>
     </div>
 </div>
-
-<div class="row mt-4">
+@if (!isUserSeller)
+{
+    <div class="row mt-4">
+        <div class="col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+            <form method="post">
+                <div class="form-group">
+                    <label asp-for="Wallet" class="text-black">Amount To Add:</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">BGN</span>
+                        </div>
+                        <input class="form-control" name="Wallet" placeholder="Enter your money">
+                    </div>
+                    <span asp-validation-for="Wallet" class="small text-danger"></span>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-primary mt-3" type="submit">Add Money To Wallet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+}
+@*<div class="row mt-4">
     <div class="col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
         <form method="post">
             <div class="form-group">
@@ -52,7 +82,7 @@
             </div>
         </form>
     </div>
-</div>
+</div>*@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
