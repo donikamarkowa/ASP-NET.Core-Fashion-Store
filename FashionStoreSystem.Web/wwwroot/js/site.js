@@ -12,7 +12,7 @@
                 $('#total_jeans').text(data.totalJeans + " pieces");
                 $('#total_accessories').text(data.totalAccessories + " pieces");
                 $('#total_shoes').text(data.totalShoes + " pieces");
-                $('#total_swimsuit').text(data.totalSwimsuit + " pieces");
+                $('#total_swimsuit').text(data.totalSwimsuits + " pieces");
 
                 $('#statistics_box').removeClass('d-none');
 

@@ -16,14 +16,14 @@ namespace FashionStoreSystem.Services.Data
         {
             return new StatisticsServiceModel
             {
-                TotalDresses = await this.dbContext.Categories.CountAsync(c => c.Name == "Dresses"),
-                TotalTshirts = await this.dbContext.Categories.CountAsync(c => c.Name == "T-shirts"),
-                TotalTrousers = await this.dbContext.Categories.CountAsync(c => c.Name == "Trousers"),
-                TotalJackets = await this.dbContext.Categories.CountAsync(c => c.Name == "Jackets"),
-                TotalJeans = await this.dbContext.Categories.CountAsync(c => c.Name == "Jeans"),
-                TotalAccessories = await this.dbContext.Categories.CountAsync(c => c.Name == "Accessories"),
-                TotalShoes = await this.dbContext.Categories.CountAsync(c => c.Name == "Shoes"),
-                TotalSwimsuits = await this.dbContext.Categories.CountAsync(c => c.Name == "Swimsuit")
+                TotalDresses = await this.dbContext.Products.CountAsync(c => c.Category.Name == "Dresses"),
+                TotalTshirts = await this.dbContext.Products.CountAsync(c => c.Category.Name == "T-shirts"),
+                TotalTrousers = await this.dbContext.Products.CountAsync(c => c.Category.Name == "Trousers"),
+                TotalJackets = await this.dbContext.Products.CountAsync(c => c.Category.Name == "Jackets"),
+                TotalJeans = await this.dbContext.Products.CountAsync(c => c.Category.Name == "Jeans"),
+                TotalAccessories = await this.dbContext.Products.CountAsync(c => c.Category.Name == "Accessories"),
+                TotalShoes = await this.dbContext.Products.CountAsync(c => c.Category.Name == "Shoes"),
+                TotalSwimsuits = await this.dbContext.Products.CountAsync(c => c.Category.Name == "Swimsuit")
             };
         }
     }

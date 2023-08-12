@@ -117,6 +117,7 @@ namespace FashionStoreSystem.Services.Data
         {
             var product = await this.dbContext
                 .Products
+                .Include(p => p.Seller.User)
                 .FirstAsync(p => p.Id.ToString() == productId);
 
             var user = await this.dbContext
